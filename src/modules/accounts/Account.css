@@ -1,0 +1,36 @@
+.content_block_author {
+    display: flex;
+    height: 70px;
+}
+
+.content_block_author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    filter: grayscale(0.5);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.content_block_author_name {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.content_block_author_name b {
+    width: 100%;
+    cursor: pointer;
+}
+
+.content_block_author_name b:hover {
+    text-decoration: underline;
+}
+
+.content_block_author_name p {
+    cursor: pointer;
+}
+
+.content_block_author_name p:hover {
+    text-decoration: underline;
+}

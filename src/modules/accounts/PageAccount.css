@@ -1,0 +1,75 @@
+h3 {
+    color:#638592;
+}
+
+.account {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    padding: 40px 100px 0 100px;
+    height: 30vh;
+    gap: 20px;
+}
+
+.account .title {
+    grid-column-start: 2;
+}
+
+.account p {
+    color: #2A3461;
+}
+
+.account .title {
+    display: flex;
+    justify-content: center;
+}
+
+.account_mainInfo {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    justify-content: center;
+    grid-row-start: 2;
+    border: thin solid rgb(216, 212, 202);
+    padding: 68px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
+    gap: 10px;
+}
+
+.account_mainInfo span {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 80%;
+    filter: grayscale(0.5);
+    border-radius: 15px;
+}
+
+.account_info_adress {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 2;
+    border: thin solid rgb(216, 212, 202);
+    border-radius: 20px;
+    padding: 68px;
+    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
+    gap: 10px;
+}
+
+.account_info_adress:first-child {
+    align-items: center;
+}
+
+.account_info_company {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 2;
+    border: thin solid rgb(216, 212, 202);
+    border-radius: 20px;
+    padding: 68px;
+    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
+    gap: 10px;
+}
