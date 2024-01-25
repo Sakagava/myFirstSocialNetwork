@@ -3,13 +3,15 @@ import Content from './modules/posts/Content'
 import Navbar from './modules/nav/Navbar'
 import {useState, useEffect} from 'react'
 import PageAccount from './modules/accounts/PageAccount/PageAccount'
-import Accounts from './modules/accounts/PageAllAccounts/PageAllAccounts'
+import PageAllAccounts from './modules/accounts/PageAllAccounts/PageAllAccounts'
+import Home from './modules/Home/Home'
+import AboutUs from './modules/accounts/About/AboutUs'
 
 function App() {
-  const [page, setPage] = useState('Posts')
+  const [page, setPage] = useState('Home')
   const [posts, setPosts] = useState([])
   const [users, setUsers] = useState([])
-  const [currentUser, setCurrentUser] = useState([]) 
+  const [currentUser, setCurrentUser] = useState(null) 
   const [numberOfPosts, setNumberOfPosts] = useState(8)
 
   useEffect(() => {
@@ -22,7 +24,13 @@ function App() {
     (async function getUsers() {
       const users = await fetch('https://jsonplaceholder.typicode.com/users')
       const finallyUsers = await users.json()
-      setUsers(finallyUsers)
+      setUsers(finallyUsers.sort((user, nextUser) => {
+        if (user.name < nextUser.name)
+          return -1;
+        if ( user.name > nextUser.name)
+          return 1;
+        return 0;
+      }))
     })();
   },[])
 
@@ -36,21 +44,58 @@ function App() {
     setCurrentUser(users.find(user => user.id === userId));
   }
 
-  function handleClickPosts() {
-    setPage('Posts')
+  function handleClickPage(page) {
+    setPage(page)
   }
 
-  function handleClickAccounts() {
-    setPage('Accounts')
+  function handleChange(e) {
+    switch (e.target.value) {
+      case 'name': 
+        setUsers([...users.sort((user, nextUser) => {
+          if (user.name < nextUser.name)
+            return -1;
+          if ( user.name > nextUser.name)
+            return 1;
+          return 0;
+        })])
+        break
+      
+      case 'userName':
+        setUsers([...users.sort((user, nextUser) => {
+          if (user.username < nextUser.username)
+            return -1;
+          if ( user.username > nextUser.username)
+            return 1;
+          return 0;
+        })])
+        break
+    }
   }
 
   switch (page) {
+    case 'Home': 
+      return (
+        <>
+          <Navbar 
+            handleClickHome = {e => handleClickPage('Home')}
+            handleClickPosts = {e => handleClickPage('Posts')}
+            handleClickAccounts = {e => handleClickPage('AllAccounts')}
+            handleClickAboutUs = {e => handleClickPage('AboutUs')}
+          />
+          <Home 
+            handleClickPosts = {e => handleClickPage('Posts')}
+          />
+        </>
+      )
+
     case 'Posts':
       return (
         <>
           <Navbar 
-            handleClickPosts = {handleClickPosts}
-            handleClickAccounts = {handleClickAccounts}
+            handleClickHome = {e => handleClickPage('Home')}
+            handleClickPosts = {e => handleClickPage('Posts')}
+            handleClickAccounts = {e => handleClickPage('AllAccounts')}
+            handleClickAboutUs = {e => handleClickPage('AboutUs')}
           />
           <div className='heading'>
             <h1>All posts</h1>
@@ -69,8 +114,10 @@ function App() {
       return (
         <>
           <Navbar 
-            handleClickPosts = {handleClickPosts}
-            handleClickAccounts = {handleClickAccounts}
+            handleClickHome = {e => handleClickPage('Home')}
+            handleClickPosts = {e => handleClickPage('Posts')}
+            handleClickAccounts = {e => handleClickPage('AllAccounts')}
+            handleClickAboutUs = {e => handleClickPage('AboutUs')}
           />
           <PageAccount 
             user = {currentUser}
@@ -78,19 +125,35 @@ function App() {
         </>
       )
     
-      case 'Accounts':
+      case 'AllAccounts':
         return (
           <>
             <Navbar 
-              handleClickPosts = {handleClickPosts}
-              handleClickAccounts = {handleClickAccounts}
+              handleClickHome = {e => handleClickPage('Home')}
+              handleClickPosts = {e => handleClickPage('Posts')}
+              handleClickAccounts = {e => handleClickPage('AllAccounts')}
+              handleClickAboutUs = {e => handleClickPage('AboutUs')}
             />
-            <Accounts
+            <PageAllAccounts
               users = {users}
               handleClickAccount = {handleClickAccount}
+              handleChange = {handleChange}
             />
           </>
         )
+      
+      case 'AboutUs': 
+          return (
+            <>
+              <Navbar 
+                handleClickHome = {e => handleClickPage('Home')}
+                handleClickPosts = {e => handleClickPage('Posts')}
+                handleClickAccounts = {e => handleClickPage('AllAccounts')}
+                handleClickAboutUs = {e => handleClickPage('AboutUs')}
+              />
+              <AboutUs />
+            </>
+          )
   }
 }
 

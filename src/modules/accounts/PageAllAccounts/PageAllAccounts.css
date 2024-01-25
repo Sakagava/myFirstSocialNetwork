@@ -13,7 +13,30 @@
     padding: 0px 0px 0 30px;
     border: thin solid rgb(216, 212, 202);
     box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
-    border-radius: 20px; 
+    border-radius: 20px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.accounts_account:hover {
+    color: #f8f3eb;
+    background-color: black;
+}
+
+.accounts_account:hover h1 {
+    transition: 0.2s;
+}
+
+.accounts_account:hover h1 {
+    color: #f8f3eb;
+}
+
+.accounts_account:hover h3 {
+    transition: 0.2s;
+}
+
+.accounts_account:hover h3 {
+    color: #f8f3eb;
 }
 
 .accounts_account span {

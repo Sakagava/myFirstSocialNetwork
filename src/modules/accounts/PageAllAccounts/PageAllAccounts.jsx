@@ -1,6 +1,7 @@
 import './PageAllAccounts.css'
+import ChangeInput from '/Разработка/Коды/React/firstAssinc/firstAssync/src/modules/inputs/ChangeInput'
 
-function Accounts({users, handleClickAccount}) {
+function PageAllAccounts({users, handleClickAccount, handleChange}) {
     function handleClick(e) {
         const userId = Number(e.target.closest('.accounts_account').id)
         setPage('Account')
@@ -8,17 +9,25 @@ function Accounts({users, handleClickAccount}) {
       }
     return (
         <div className="accounts">
+            <ChangeInput 
+                handleChange = { handleChange }
+            />
             {users.map(user => {
                 return (
-                    <div className="accounts_account" key = {user.id} id = {user.id}>
+                    <div 
+                        className="accounts_account" 
+                        key = {user.id} 
+                        id = {user.id} 
+                        onClick={handleClickAccount}
+                    >
                         <div className="accounts_account_img">
-                            <img src={`/src/assets/usersPhoto/photo${user.id}.jpeg`} onClick={handleClickAccount} alt="" />
+                            <img src={`/src/assets/usersPhoto/photo${user.id}.jpeg`} alt="" />
                         </div>
                         <span className='accounts_account_username'>
-                            <h1 onClick={handleClickAccount}>{user.username}</h1>
+                            <h1>{user.username}</h1>
                         </span>
                         <span className='accounts_account_name'>
-                            <h3 onClick={handleClickAccount}>{user.name}</h3>
+                            <h3>{user.name}</h3>
                         </span>
                     </div>
                 )
@@ -27,4 +36,4 @@ function Accounts({users, handleClickAccount}) {
     )
 }
 
-export default Accounts
+export default PageAllAccounts

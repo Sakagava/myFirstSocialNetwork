@@ -1,0 +1,17 @@
+.aboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.aboutUs h1 {
+    font-size: 60px;
+}
+
+.aboutUs p {
+    width: 40%;
+    text-align: center;
+    font-size: 30px;
+}

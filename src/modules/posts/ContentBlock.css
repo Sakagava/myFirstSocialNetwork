@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 96%;
-    height: 550px;
+    height: 580px;
     padding: 0 40px 0 15px;
     gap: 20px;
     border: thin solid rgb(216, 212, 202);
@@ -52,7 +52,7 @@
 
 @media screen and (max-width: 1440px) {
     .content_block {
-        height: 420px;
+        height: 470px;
     }
 }
 
