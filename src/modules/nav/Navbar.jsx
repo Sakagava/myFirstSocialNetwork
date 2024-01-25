@@ -1,6 +1,6 @@
 import './Navbar.css'
 
-function Navbar({handleClickPosts}) {
+function Navbar({handleClickPosts, handleClickAccounts}) {
     return (
         <div className='nav'>
         <div className='nav_elem'>
@@ -13,7 +13,7 @@ function Navbar({handleClickPosts}) {
             <p>Posts</p>
             <div className='nav_elem_bottomBorder'></div>
         </div>
-        <div className='nav_elem'>
+        <div className='nav_elem' onClick={handleClickAccounts}>
             <div className='nav_elem_topBorder'></div>
             <p>Accounts</p>
             <div className='nav_elem_bottomBorder'></div>

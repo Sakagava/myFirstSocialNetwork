@@ -2,7 +2,8 @@ import './App.css'
 import Content from './modules/posts/Content'
 import Navbar from './modules/nav/Navbar'
 import {useState, useEffect} from 'react'
-import PageAccount from './modules/accounts/PageAccount'
+import PageAccount from './modules/accounts/PageAccount/PageAccount'
+import Accounts from './modules/accounts/PageAllAccounts/PageAllAccounts'
 
 function App() {
   const [page, setPage] = useState('Posts')
@@ -15,7 +16,7 @@ function App() {
     (async function getPosts() {
       const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
       const finalPosts = await posts.json()
-      setPosts(finalPosts)
+      setPosts(finalPosts.sort(() => Math.random() - 0.5))
     })();
 
     (async function getUsers() {
@@ -30,13 +31,17 @@ function App() {
   }
 
   function handleClickAccount(e) {
-    const userId = Number(e.target.closest('.content_block_author').id)
+    const userId = Number((e.target.closest('.content_block_author') || e.target.closest('.accounts_account')).id)
     setPage('Account')
     setCurrentUser(users.find(user => user.id === userId));
   }
 
-  function handleClickPosts(e) {
+  function handleClickPosts() {
     setPage('Posts')
+  }
+
+  function handleClickAccounts() {
+    setPage('Accounts')
   }
 
   switch (page) {
@@ -45,6 +50,7 @@ function App() {
         <>
           <Navbar 
             handleClickPosts = {handleClickPosts}
+            handleClickAccounts = {handleClickAccounts}
           />
           <div className='heading'>
             <h1>All posts</h1>
@@ -64,12 +70,27 @@ function App() {
         <>
           <Navbar 
             handleClickPosts = {handleClickPosts}
+            handleClickAccounts = {handleClickAccounts}
           />
           <PageAccount 
             user = {currentUser}
           />
         </>
       )
+    
+      case 'Accounts':
+        return (
+          <>
+            <Navbar 
+              handleClickPosts = {handleClickPosts}
+              handleClickAccounts = {handleClickAccounts}
+            />
+            <Accounts
+              users = {users}
+              handleClickAccount = {handleClickAccount}
+            />
+          </>
+        )
   }
 }
 

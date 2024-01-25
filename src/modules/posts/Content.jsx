@@ -4,6 +4,7 @@ import ContentBlock from './ContentBlock'
 export default function Content({posts, users, numberOfPosts, handleClickShowMore, handleClickAccount}) {
   
     return (
+      <>
       <div className='content'>
       {posts.slice(0, numberOfPosts).map(post => {
         return (
@@ -15,6 +16,7 @@ export default function Content({posts, users, numberOfPosts, handleClickShowMor
           />
         )
       })}
+    </div>
       {posts.length > 0 && 
         <div className='content_lastElem'> 
           {numberOfPosts < posts.length ?  
@@ -23,6 +25,6 @@ export default function Content({posts, users, numberOfPosts, handleClickShowMor
           }
         </div>
       }
-    </div>
+      </>
     )
   }
