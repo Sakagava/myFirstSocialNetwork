@@ -11,7 +11,7 @@
     background-color: rgb(0, 0, 0);
     color: rgb(253, 251, 246);
     box-shadow: 0px 1px 8px rgb(0, 0, 0, 50%);
-    z-index: 1;
+    z-index: 10;
 }
 
 .nav_elem p {

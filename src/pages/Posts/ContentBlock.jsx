@@ -1,5 +1,5 @@
 import './ContentBlock.css'
-import AccountDie from '../accounts/AccountDie/AccountDie.jsx'
+import AccountDie from '/Разработка/Коды/React/firstAssinc/firstAssync/src/components/AccountDie/AccountDie'
 
 export default function ContentBlock({ users, post, handleClickAccount }) {
   const user = users.find(user => user.id === post.userId);

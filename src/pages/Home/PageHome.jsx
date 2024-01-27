@@ -1,4 +1,4 @@
-import './Home.css'
+import './PageHome.css'
 
 function Home({handleClickPosts}) {
     return (

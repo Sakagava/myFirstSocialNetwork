@@ -16,6 +16,13 @@
     border: thin solid rgb(216, 212, 202);
     margin: 5px;
     margin-bottom: 12px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.content_block:hover {
+    background-color: black;
+    color: #f8f3eb;
 }
 
 .content_lastElem {
@@ -31,7 +38,6 @@
     font-size: 24px;
     text-decoration: underline;
     color: rgb(0, 0, 0);
-    cursor: pointer;
 }
 
 .content_lastElem p {

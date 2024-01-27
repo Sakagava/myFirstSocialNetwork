@@ -1,11 +1,11 @@
 import './App.css'
-import Content from './modules/posts/Content'
-import Navbar from './modules/nav/Navbar'
+import Content from './pages/Posts/Content'
+import Navbar from './components/Nav/Navbar'
 import {useState, useEffect} from 'react'
-import PageAccount from './modules/accounts/PageAccount/PageAccount'
-import PageAllAccounts from './modules/accounts/PageAllAccounts/PageAllAccounts'
-import Home from './modules/Home/Home'
-import AboutUs from './modules/accounts/About/AboutUs'
+import PageAccount from './pages/Account/PageAccount'
+import PageAllAccounts from './pages/AllAccounts/PageAllAccounts'
+import Home from './pages/Home/PageHome'
+import AboutUs from './pages/About/AboutUs'
 
 function App() {
   const [page, setPage] = useState('Home')
@@ -97,9 +97,6 @@ function App() {
             handleClickAccounts = {e => handleClickPage('AllAccounts')}
             handleClickAboutUs = {e => handleClickPage('AboutUs')}
           />
-          <div className='heading'>
-            <h1>All posts</h1>
-          </div>
           <Content 
             posts = {posts}
             users = {users}
@@ -120,7 +117,9 @@ function App() {
             handleClickAboutUs = {e => handleClickPage('AboutUs')}
           />
           <PageAccount 
+            users = {users}
             user = {currentUser}
+            posts = {posts}
           />
         </>
       )

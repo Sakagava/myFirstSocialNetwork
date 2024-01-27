@@ -1,12 +1,8 @@
 import './PageAllAccounts.css'
-import ChangeInput from '/Разработка/Коды/React/firstAssinc/firstAssync/src/modules/inputs/ChangeInput'
+import ChangeInput from '/Разработка/Коды/React/firstAssinc/firstAssync/src/components/inputs/ChangeInput'
 
 function PageAllAccounts({users, handleClickAccount, handleChange}) {
-    function handleClick(e) {
-        const userId = Number(e.target.closest('.accounts_account').id)
-        setPage('Account')
-        setCurrentUser(users.find(user => user.id === userId));
-      }
+
     return (
         <div className="accounts">
             <ChangeInput 
