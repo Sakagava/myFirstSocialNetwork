@@ -1,4 +1,4 @@
-import './PageAccount.module.css'
+import './PageAccount.css'
 import { useSelector } from 'react-redux'
 import ContentBlock from '../Posts/ContentBlock'
 

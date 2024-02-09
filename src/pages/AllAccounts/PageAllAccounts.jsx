@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import './PageAllAccounts.module.css'
+import './PageAllAccounts.css'
 import ChangeInput from '/Разработка/Коды/React/firstAssinc/firstAssync/src/components/inputs/ChangeInput'
 import { setPage } from '../../store/navigation'
 import { setCurrentUser } from '../../store/users'
