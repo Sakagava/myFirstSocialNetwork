@@ -1,285 +1,263 @@
-h3 {
-    color:#638592;
+.account {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 50px;
+	padding: 40px 100px 0 100px;
+	gap: 20px;
+	margin-bottom: 45px;
 }
 
-.account {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 50px;
-    padding: 40px 100px 0 100px;
-    gap: 20px;
+.account h3 {
+	color: #638592;
 }
 
 .account_title {
-    display: flex;
-    justify-content: center;
-    grid-column-start: 1;
-    grid-column-end: 4;
+	display: flex;
+	justify-content: center;
+	grid-column-start: 1;
+	grid-column-end: 4;
 }
 
 .account_title h1 {
-    height: 20px
-}
-
-.account p {
-    color: #2A3461;
+	height: 20px;
 }
 
 .account .title {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .account_mainInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    grid-row-start: 2;
-    border: thin solid rgb(216, 212, 202);
-    padding: 4vw;
-    border-radius: 20px;
-    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	grid-row-start: 2;
+	border: thin solid rgb(216, 212, 202);
+	padding: 4vw;
+	border-radius: 20px;
+	box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
+	gap: 10px;
 }
 
 .account_mainInfo span {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .account_mainInfo_img img {
-    width: 80%;
-    filter: grayscale(0.5);
-    border-radius: 15px;
+	width: 80%;
+	filter: grayscale(0.5);
+	border-radius: 15px;
 }
 
 .account_info_adress {
-    display: flex;
-    flex-direction: column;
-    grid-row-start: 2;
-    border: thin solid rgb(216, 212, 202);
-    border-radius: 20px;
-    padding: 68px;
-    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	grid-row-start: 2;
+	border: thin solid rgb(216, 212, 202);
+	border-radius: 20px;
+	padding: 68px;
+	box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
+	gap: 10px;
 }
 
 .account_info_adress:first-child {
-    align-items: center;
+	align-items: center;
 }
 
 .account_info_company {
-    display: flex;
-    flex-direction: column;
-    grid-row-start: 2;
-    border: thin solid rgb(216, 212, 202);
-    border-radius: 20px;
-    padding: 68px;
-    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	grid-row-start: 2;
+	border: thin solid rgb(216, 212, 202);
+	border-radius: 20px;
+	padding: 68px;
+	box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
+	gap: 10px;
 }
 
-.account_info_numberOfPosts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    border: thin solid rgb(216, 212, 202);
-    border-radius: 20px;
-    padding: 68px;
-    box-shadow: 0px 0px 15px 2px rgb(0, 0, 0, 0.1);
-    gap: 10px;
-    transition: 0.5s;
-    cursor: pointer;
+.postsUser {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-.account_info_numberOfPosts:hover {
-    color: #f8f3eb;
-    background-color: black;
-}
-
-.account_info_numberOfPosts:hover h3 {
-    color: #f8f3eb;
-}
-
-.account_info_numberOfPosts h3 {
-    font-size: 24px;
-    transition: 0.5s;
+.postsUser h2 {
+	font-size: 35px;
+	margin-bottom: 10px;
 }
 
 @media screen and (max-width: 1100px) {
-    .account {
-        display: flex;
-        flex-direction: column;
-        padding: 40px 100px 0 100px;
-    }
+	.account {
+		display: flex;
+		flex-direction: column;
+		padding: 40px 100px 0 100px;
+	}
 
-    .account_title h1 {
-        height: 40px
-    }
+	.account_title h1 {
+		height: 40px;
+	}
 
-    .account_mainInfo {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        height: 420px;
-        gap: 15px;
-        padding: 4vw;
-    }
-    
-    .account_mainInfo_img {
-        width: 31vw;
-        grid-row-start: 1;
-        grid-row-end: 5;
-    }
+	.account_mainInfo {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(4, 1fr);
+		height: 420px;
+		gap: 15px;
+		padding: 4vw;
+	}
 
-    .account_mainInfo_img img {
-        width: 100%;
-        height: 32vw;
-        filter: grayscale(0.5);
-        border-radius: 15px;
-    }
+	.account_mainInfo_img {
+		width: 31vw;
+		grid-row-start: 1;
+		grid-row-end: 5;
+	}
 
-    .account_mainInfo_email {
-        grid-column-start: 2;
-        grid-row-start: 2;
-    }
-    
-    .account_mainInfo_phone {
-        grid-column-start: 2;
-        grid-row-start: 3;
-    }
-    
-    .account_mainInfo_website {
-        grid-column-start: 2;
-        grid-row-start: 4;
-    }
+	.account_mainInfo_img img {
+		width: 100%;
+		height: 32vw;
+		filter: grayscale(0.5);
+		border-radius: 15px;
+	}
 
-    .account_info_adress {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 30px 1fr 1fr 1fr;
-        height: 420px;
-        gap: 15px;
-        padding: 4vw;
-    }
+	.account_mainInfo_email {
+		grid-column-start: 2;
+		grid-row-start: 2;
+	}
 
-    .account_info_adress_title {
-        grid-column-start: 1;
-        grid-column-end: 4;
-    }
+	.account_mainInfo_phone {
+		grid-column-start: 2;
+		grid-row-start: 3;
+	}
 
-    .account_info_adress_street {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 2;
-    }
+	.account_mainInfo_website {
+		grid-column-start: 2;
+		grid-row-start: 4;
+	}
 
-    .account_info_adress_suite {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 3;
-    }
+	.account_info_adress {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 30px 1fr 1fr 1fr;
+		height: 420px;
+		gap: 15px;
+		padding: 4vw;
+	}
 
-    .account_info_adress_city {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 4;
-    }
+	.account_info_adress_title {
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
 
-    .account_info_adress_zipcode {
-        grid-column-start: 3;
-        grid-row-start: 2;
-    }
+	.account_info_adress_street {
+		grid-column-start: 1;
+		grid-column-end: 3;
+		grid-row-start: 2;
+	}
 
-    .account_info_adress_lat {
-        grid-column-start: 3;
-        grid-row-start: 3;
-    }
+	.account_info_adress_suite {
+		grid-column-start: 1;
+		grid-column-end: 3;
+		grid-row-start: 3;
+	}
 
-    .account_info_adress_lng {
-        grid-column-start: 3;
-        grid-row-start: 4;
-    }
+	.account_info_adress_city {
+		grid-column-start: 1;
+		grid-column-end: 3;
+		grid-row-start: 4;
+	}
 
-    .account_info_company {
-        display: flex;
-        flex-direction: column;
-        height: 340px;
-        gap: 15px;
-        padding: 4vw;
-    }
+	.account_info_adress_zipcode {
+		grid-column-start: 3;
+		grid-row-start: 2;
+	}
+
+	.account_info_adress_lat {
+		grid-column-start: 3;
+		grid-row-start: 3;
+	}
+
+	.account_info_adress_lng {
+		grid-column-start: 3;
+		grid-row-start: 4;
+	}
+
+	.account_info_company {
+		display: flex;
+		flex-direction: column;
+		height: 340px;
+		gap: 15px;
+		padding: 4vw;
+	}
 }
 
 @media screen and (max-width: 750px) {
-    .account {
-        display: flex;
-        flex-direction: column;
-        padding: 40px 30px 0 30px;
-    }
+	.account {
+		display: flex;
+		flex-direction: column;
+		padding: 40px 30px 0 30px;
+	}
 
-    .account_mainInfo {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(5, 1fr);
-        height: 800px;
-        gap: 15px;
-        padding: 4vw;
-    }
-    
-    .account_mainInfo_img {
-        width: 100%;
-        height: 100%;
-        grid-row-start: 1;
-        grid-row-end: 1;
-    }
+	.account_mainInfo {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(5, 1fr);
+		height: 800px;
+		gap: 15px;
+		padding: 4vw;
+	}
 
-    .account_mainInfo_img img {
-        width: 40%;
-        height: 35vw;
-        filter: grayscale(0.5);
-        border-radius: 15px;
-    }
+	.account_mainInfo_img {
+		width: 100%;
+		height: 100%;
+		grid-row-start: 1;
+		grid-row-end: 1;
+	}
 
-    .account_mainInfo_email {
-        grid-column-start: 1;
-        grid-row-start: 3;
-    }
-    
-    .account_mainInfo_phone {
-        grid-column-start: 1;
-        grid-row-start: 4;
-    }
-    
-    .account_mainInfo_website {
-        grid-column-start: 1;
-        grid-row-start: 5;
-    }
+	.account_mainInfo_img img {
+		width: 40%;
+		height: 35vw;
+		filter: grayscale(0.5);
+		border-radius: 15px;
+	}
 
-    .account_info_adress {
-        display: flex;
-        flex-direction: column;
-        height: 550px;
-    }
-    
-    .account_info_company {
-        display: flex;
-        flex-direction: column;
-        height: 340px;
-        gap: 15px;
-        padding: 4vw;
-    }
+	.account_mainInfo_email {
+		grid-column-start: 1;
+		grid-row-start: 3;
+	}
+
+	.account_mainInfo_phone {
+		grid-column-start: 1;
+		grid-row-start: 4;
+	}
+
+	.account_mainInfo_website {
+		grid-column-start: 1;
+		grid-row-start: 5;
+	}
+
+	.account_info_adress {
+		display: flex;
+		flex-direction: column;
+		height: 550px;
+	}
+
+	.account_info_company {
+		display: flex;
+		flex-direction: column;
+		height: 340px;
+		gap: 15px;
+		padding: 4vw;
+	}
 }
 
 @media screen and (max-width: 500px) {
-    .account_title {
-        margin-bottom: 30px;
-    }
+	.account_title {
+		margin-bottom: 30px;
+	}
 
-    .account_mainInfo {
-        height: 700px;
-    }
+	.account_mainInfo {
+		height: 700px;
+	}
 }
