@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './ContentBlock.css'
 import ContentBlock from './ContentBlock'
 import { useSelector } from 'react-redux'
+import { Grid, Button, Container, Typography, Box } from '@mui/material'
 
 export default function Content() {
 	const posts = useSelector(state => state.posts.posts)
@@ -13,22 +13,43 @@ export default function Content() {
 
 	return (
 		<>
-			<div className='heading'>
-				<h1>All posts</h1>
-			</div>
-			<div className='content'>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<Typography variant='h1' fontSize={52}>
+					All posts
+				</Typography>
+			</Box>
+			<Grid container spacing={{ md: 2 }} p={5}>
 				{posts.slice(0, numberOfPosts).map(post => {
-					return <ContentBlock post={post} key={post.id} />
+					return (
+						<Grid item xs={12} md={4} lg={3} key={post.id}>
+							<ContentBlock post={post} />
+						</Grid>
+					)
 				})}
-			</div>
+			</Grid>
 			{posts.length > 0 && (
-				<div className='content_lastElem'>
+				<Container
+					sx={{
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						p: 0,
+					}}
+				>
 					{numberOfPosts < posts.length ? (
-						<span onClick={handleClickShowMore}>Show more</span>
+						<Button variant='text' onClick={handleClickShowMore}>
+							Show more
+						</Button>
 					) : (
-						<p>No more posts</p>
+						<Typography>No more posts</Typography>
 					)}
-				</div>
+				</Container>
 			)}
 		</>
 	)

@@ -17,13 +17,7 @@ const users = createSlice({
 	},
 	reducers: {
 		setCurrentUser: (state, action) => {
-			const userId = Number(
-				(
-					action.payload.closest('.content_block_author') ||
-					action.payload.closest('.accounts_account')
-				).id
-			)
-			state.currentUser = state.users.find(user => user.id === userId)
+			state.currentUser = state.users.find(user => user.id === action.payload)
 		},
 		sortUsers: (state, action) => {
 			state.sortBy = action.payload
@@ -38,7 +32,7 @@ const users = createSlice({
 					]
 					break
 
-				case 'userName':
+				case 'username':
 					state.users = [
 						...state.users.sort((user, nextUser) => {
 							if (user.username < nextUser.username) return -1
@@ -56,16 +50,6 @@ const users = createSlice({
 		})
 	},
 })
-
-// function handleClickAccount(e) {
-// 	const userId = Number(
-// 		(
-// 			e.target.closest('.content_block_author') ||
-// 			e.target.closest('.accounts_account')
-// 		).id
-// 	)
-// 	users.find(user => user.id === userId)
-// }
 
 export const { setCurrentUser, sortUsers } = users.actions
 export default users.reducer

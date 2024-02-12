@@ -1,14 +1,24 @@
-import './AboutUs.css'
+import { Container, Typography } from '@mui/material'
 
 function AboutUs() {
 	return (
-		<div className='aboutUs'>
-			<h1>About</h1>
-			<p>
-				On this project, I consolidated my knowledge acquired while studying the
-				React documentation
-			</p>
-		</div>
+		<Container
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+				height: '75vh',
+			}}
+		>
+			<Typography variant='h1' color='text.black'>
+				About
+			</Typography>
+			<Typography sx={{ textAlign: 'center' }}>
+				On this project, I consolidated my knowledge acquired <br />
+				while studying the React documentation
+			</Typography>
+		</Container>
 	)
 }
 

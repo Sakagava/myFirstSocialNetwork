@@ -1,100 +1,122 @@
-import './PageAccount.css'
 import { useSelector } from 'react-redux'
 import ContentBlock from '../Posts/ContentBlock'
+import { Container, Box, Typography, Paper, Avatar, Stack } from '@mui/material'
 
 export default function PageAccount() {
 	const user = useSelector(state => state.users.currentUser)
 	const posts = useSelector(state => state.posts.posts)
 
 	return (
-		<>
-			<div className='account'>
-				<div className='account_title title'>
-					<h1>{user.name}</h1>
-				</div>
-				<div className='account_mainInfo'>
-					<span className='account_mainInfo_img'>
-						<img src={`/src/assets/usersPhoto/photo${user.id}.jpeg`} alt='' />
-					</span>
-					<div className='account_mainInfo_name'>
-						<h3>Name</h3>
-						<p>{user.name}</p>
-					</div>
-					<div className='account_mainInfo_email'>
-						<h3>Email:</h3>
-						<p>{user.email}</p>
-					</div>
-					<div className='account_mainInfo_phone'>
-						<h3>Phone:</h3>
-						<p>{user.phone}</p>
-					</div>
-					<div className='account_mainInfo_website'>
-						<h3>Website:</h3>
-						<p>{user.website}</p>
-					</div>
-				</div>
-				<div className='account_info_adress'>
-					<div className='account_info_adress_title title'>
-						<h2>Address:</h2>
-					</div>
-					<div className='account_info_adress_street'>
-						<h3>Street:</h3>
-						<p>{user.address.street}</p>
-					</div>
-					<div className='account_info_adress_suite'>
-						<h3>Suite:</h3>
-						<p>{user.address.suite}</p>
-					</div>
-					<div className='account_info_adress_city'>
-						<h3>City:</h3>
-						<p>{user.address.city}</p>
-					</div>
-					<div className='account_info_adress_zipcode'>
-						<h3>Zipcode:</h3>
-						<p>{user.address.zipcode}</p>
-					</div>
-					<div className='account_info_adress_lat'>
-						<h3>Lat:</h3>
-						<p>{user.address.geo.lat}</p>
-					</div>
-					<div className='account_info_adress_lng'>
-						<h3>Lng:</h3>
-						<p>{user.address.geo.lng}</p>
-					</div>
-				</div>
-				<div className='account_info_company'>
-					<div className='account_info_company_title title'>
-						<h2>Company:</h2>
-					</div>
-					<div className='account_info_company_name'>
-						<h3>Name:</h3>
-						<p>{user.company.name}</p>
-					</div>
-					<div className='account_info_company_catchPhrase'>
-						<h3>CatchPhrase:</h3>
-						<p>{user.company.catchPhrase}</p>
-					</div>
-					<div className='account_info_company_bs'>
-						<h3>Bs:</h3>
-						<p>{user.company.bs}</p>
-					</div>
-				</div>
-			</div>
-			<div className='postsUser'>
-				<h2>All posts {user.name}</h2>
-				<div className='content'>
-					{posts.map(post => {
-						if (post.userId == user.id) {
-							return (
-								<ContentBlock
-									post={post}
-									handleClickAccount={e => handleClickAccount(e)}
-								/>
-							)
-						}
-					})}
-				</div>
-			</div>
-		</>
+		<Container>
+			<Typography variant='h1' textAlign={'center'} fontSize={52}>
+				{user.name}
+			</Typography>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					marginBottom: '30px',
+				}}
+			>
+				<Avatar
+					alt={`User ${user.id}`}
+					src={`/src/assets/usersPhoto/photo${user.id}.jpeg`}
+					sx={{ width: '400px', height: '400px' }}
+				/>
+			</Box>
+			<Stack
+				direction='row'
+				spacing={2}
+				justifyContent={'space-between'}
+				height={'500px'}
+				marginBottom={'30px'}
+			>
+				<Paper
+					elevation={3}
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						width: '30%',
+						paddingTop: '4%',
+					}}
+					square={false}
+				>
+					<Typography variant='h4' textAlign={'center'}>
+						Basics:
+					</Typography>
+					<Box paddingLeft={'4%'}>
+						<Typography variant='h5'>Name</Typography>
+						<Typography>{user.name}</Typography>
+						<Typography variant='h5'>Email:</Typography>
+						<Typography>{user.email}</Typography>
+						<Typography variant='h5'>Phone:</Typography>
+						<Typography>{user.phone}</Typography>
+						<Typography variant='h5'>Website:</Typography>
+						<Typography>{user.website}</Typography>
+					</Box>
+				</Paper>
+				<Paper
+					elevation={3}
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						paddingTop: '4%',
+						width: '30%',
+					}}
+					square={false}
+				>
+					<Typography variant='h4' textAlign={'center'}>
+						Address:
+					</Typography>
+					<Box sx={{ paddingLeft: '4%' }}>
+						<Typography variant='h5'>Street:</Typography>
+						<Typography>{user.address.street}</Typography>
+						<Typography variant='h5'>Suite:</Typography>
+						<Typography>{user.address.suite}</Typography>
+						<Typography variant='h5'>City:</Typography>
+						<Typography>{user.address.city}</Typography>
+						<Typography variant='h5'>Zipcode:</Typography>
+						<Typography>{user.address.zipcode}</Typography>
+						<Typography variant='h5'>Lat:</Typography>
+						<Typography>{user.address.geo.lat}</Typography>
+						<Typography variant='h5'>Lng:</Typography>
+						<Typography>{user.address.geo.lng}</Typography>
+					</Box>
+				</Paper>
+				<Paper
+					elevation={3}
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						paddingTop: '4%',
+						width: '30%',
+					}}
+					square={false}
+				>
+					<Typography variant='h4' textAlign={'center'}>
+						Company:
+					</Typography>
+					<Box sx={{ paddingLeft: '4%' }}>
+						<Typography variant='h5'>Name:</Typography>
+						<Typography>{user.company.name}</Typography>
+						<Typography variant='h5'>CatchPhrase:</Typography>
+						<Typography>{user.company.catchPhrase}</Typography>
+						<Typography variant='h5'>Bs:</Typography>
+						<Typography>{user.company.bs}</Typography>
+					</Box>
+				</Paper>
+			</Stack>
+
+			<Typography variant='h4' marginBottom={'20px'}>
+				All posts {user.name}
+			</Typography>
+			<Stack direction={'column'} spacing={2}>
+				{posts.map(post => {
+					if (post.userId == user.id) {
+						return <ContentBlock post={post} />
+					}
+				})}
+			</Stack>
+		</Container>
 	)
 }

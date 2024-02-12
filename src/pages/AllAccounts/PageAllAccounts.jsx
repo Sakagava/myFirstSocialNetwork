@@ -1,39 +1,97 @@
+import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './PageAllAccounts.css'
-import ChangeInput from '/Разработка/Коды/React/firstAssinc/firstAssync/src/components/inputs/ChangeInput'
+import { sortUsers } from '../../store/users'
 import { setPage } from '../../store/navigation'
 import { setCurrentUser } from '../../store/users'
+import {
+	Card,
+	CardHeader,
+	Avatar,
+	IconButton,
+	Container,
+	Box,
+	FormControl,
+	InputLabel,
+	Select,
+	MenuItem,
+} from '@mui/material'
 
 function PageAllAccounts() {
 	const users = useSelector(state => state.users.users)
 	const dispatch = useDispatch()
+	const [sortBy, setSortBy] = React.useState('')
+
+	const handleChange = e => {
+		setSortBy(e.target.value)
+		dispatch(sortUsers(e.target.value.toLowerCase()))
+	}
+
 	return (
-		<div className='accounts'>
-			<ChangeInput />
+		<Container>
+			<Box
+				sx={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					width: '100%',
+					marginBottom: 2,
+				}}
+			>
+				<FormControl sx={{ width: '240px' }}>
+					<InputLabel id='demo-simple-select-label'>Sort by:</InputLabel>
+					<Select
+						labelId='demo-simple-select-label'
+						id='demo-simple-select'
+						value={sortBy}
+						label='sortBy'
+						onChange={handleChange}
+					>
+						<MenuItem value={'name'}>Name</MenuItem>
+						<MenuItem value={'username'}>Username</MenuItem>
+					</Select>
+				</FormControl>
+			</Box>
 			{users.map(user => {
 				return (
-					<div
-						className='accounts_account'
+					<Card
+						sx={{
+							height: { xs: 135, sm: 135, md: 135, lg: 135, xl: 135 },
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between',
+							marginBottom: 1,
+							cursor: 'pointer',
+							transition: '0.2s',
+							':hover': {
+								backgroundColor: '#3f50b5',
+								color: 'white',
+								'& .MuiCardHeader-subheader': {
+									color: '#e8eaf6',
+								},
+							},
+						}}
 						key={user.id}
-						id={user.id}
 						onClick={e => {
 							dispatch(setPage('Account'))
-							dispatch(setCurrentUser(e.target))
+							dispatch(setCurrentUser(user.id))
 						}}
 					>
-						<div className='accounts_account_img'>
-							<img src={`/src/assets/usersPhoto/photo${user.id}.jpeg`} alt='' />
-						</div>
-						<span className='accounts_account_username'>
-							<h1>{user.username}</h1>
-						</span>
-						<span className='accounts_account_name'>
-							<h3>{user.name}</h3>
-						</span>
-					</div>
+						<CardHeader
+							avatar={
+								<Avatar
+									aria-label='recipe'
+									alt={`User ${user.name}`}
+									src={`/src/assets/usersPhoto/photo${user.id}.jpeg`}
+									sx={{ width: 100, height: 100 }}
+								></Avatar>
+							}
+							title={user?.username}
+							subheader={user?.name}
+						/>
+					</Card>
 				)
 			})}
-		</div>
+		</Container>
 	)
 }
 
