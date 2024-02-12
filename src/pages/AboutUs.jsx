@@ -14,7 +14,7 @@ function AboutUs() {
 			<Typography variant='h1' color='text.black'>
 				About
 			</Typography>
-			<Typography sx={{ textAlign: 'center' }}>
+			<Typography textAlign='center'>
 				On this project, I consolidated my knowledge acquired <br />
 				while studying the React documentation
 			</Typography>

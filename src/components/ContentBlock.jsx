@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setPage } from '../../store/navigation'
-import { setCurrentUser } from '../../store/users'
+import { setPage } from '../store/navigation'
+import { setCurrentUser } from '../store/users'
 import {
 	Card,
 	CardContent,
@@ -8,6 +8,7 @@ import {
 	CardHeader,
 	Avatar,
 	IconButton,
+	Paper,
 } from '@mui/material'
 
 export default function ContentBlock({ post, handleClickAccount }) {
@@ -20,7 +21,8 @@ export default function ContentBlock({ post, handleClickAccount }) {
 	}
 
 	return (
-		<Card
+		<Paper
+			variant='outlined'
 			sx={{
 				height: { xs: 350, sm: 240, md: 360, lg: 350, xl: 290 },
 				display: 'flex',
@@ -47,7 +49,7 @@ export default function ContentBlock({ post, handleClickAccount }) {
 				}
 				action={
 					<IconButton
-						aria-label='settings'
+						aria-label='account'
 						onClick={handleClickAccount}
 					></IconButton>
 				}
@@ -57,18 +59,14 @@ export default function ContentBlock({ post, handleClickAccount }) {
 					transition: '0.2s',
 					cursor: 'pointer',
 					':hover': {
-						backgroundColor: '#3f50b5',
-						color: 'white',
-						'& .MuiCardHeader-subheader': {
-							color: '#e8eaf6',
-						},
+						backgroundColor: '#eeeeee',
 					},
 				}}
-				onClick={e => {
+				onClick={() => {
 					dispatch(setPage('Account'))
 					dispatch(setCurrentUser(post.userId))
 				}}
 			/>
-		</Card>
+		</Paper>
 	)
 }

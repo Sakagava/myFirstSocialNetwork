@@ -1,29 +1,37 @@
 import { useSelector } from 'react-redux'
-import ContentBlock from '../Posts/ContentBlock'
+import ContentBlock from '../components/ContentBlock'
 import { Container, Box, Typography, Paper, Avatar, Stack } from '@mui/material'
+import styled from '@emotion/styled'
 
 export default function PageAccount() {
 	const user = useSelector(state => state.users.currentUser)
 	const posts = useSelector(state => state.posts.posts)
+
+	const InfoBlockWrap = styled(Paper)(() => ({
+		display: 'flex',
+		flexDirection: 'column',
+		width: '30%',
+		paddingTop: '4%',
+	}))
+
+	const AvatarWrap = styled(Box)(() => ({
+		display: 'flex',
+		justifyContent: 'center',
+		marginBottom: '30px',
+	}))
 
 	return (
 		<Container>
 			<Typography variant='h1' textAlign={'center'} fontSize={52}>
 				{user.name}
 			</Typography>
-			<Box
-				sx={{
-					display: 'flex',
-					justifyContent: 'center',
-					marginBottom: '30px',
-				}}
-			>
+			<AvatarWrap>
 				<Avatar
 					alt={`User ${user.id}`}
 					src={`/src/assets/usersPhoto/photo${user.id}.jpeg`}
 					sx={{ width: '400px', height: '400px' }}
 				/>
-			</Box>
+			</AvatarWrap>
 			<Stack
 				direction='row'
 				spacing={2}
@@ -31,16 +39,7 @@ export default function PageAccount() {
 				height={'500px'}
 				marginBottom={'30px'}
 			>
-				<Paper
-					elevation={3}
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						width: '30%',
-						paddingTop: '4%',
-					}}
-					square={false}
-				>
+				<InfoBlockWrap elevation={3} square={false}>
 					<Typography variant='h4' textAlign={'center'}>
 						Basics:
 					</Typography>
@@ -54,17 +53,8 @@ export default function PageAccount() {
 						<Typography variant='h5'>Website:</Typography>
 						<Typography>{user.website}</Typography>
 					</Box>
-				</Paper>
-				<Paper
-					elevation={3}
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						paddingTop: '4%',
-						width: '30%',
-					}}
-					square={false}
-				>
+				</InfoBlockWrap>
+				<InfoBlockWrap elevation={3} square={false}>
 					<Typography variant='h4' textAlign={'center'}>
 						Address:
 					</Typography>
@@ -82,17 +72,8 @@ export default function PageAccount() {
 						<Typography variant='h5'>Lng:</Typography>
 						<Typography>{user.address.geo.lng}</Typography>
 					</Box>
-				</Paper>
-				<Paper
-					elevation={3}
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						paddingTop: '4%',
-						width: '30%',
-					}}
-					square={false}
-				>
+				</InfoBlockWrap>
+				<InfoBlockWrap elevation={3} square={false}>
 					<Typography variant='h4' textAlign={'center'}>
 						Company:
 					</Typography>
@@ -104,7 +85,7 @@ export default function PageAccount() {
 						<Typography variant='h5'>Bs:</Typography>
 						<Typography>{user.company.bs}</Typography>
 					</Box>
-				</Paper>
+				</InfoBlockWrap>
 			</Stack>
 
 			<Typography variant='h4' marginBottom={'20px'}>

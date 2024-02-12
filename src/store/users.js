@@ -10,7 +10,7 @@ const users = createSlice({
 	name: 'users',
 	initialState: {
 		users: [],
-		sortBy: 'name',
+		sortBy: '',
 		status: null,
 		error: null,
 		currentUser: {},

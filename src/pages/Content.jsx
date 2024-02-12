@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import ContentBlock from './ContentBlock'
+import ContentBlock from '../components/ContentBlock'
 import { useSelector } from 'react-redux'
 import { Grid, Button, Container, Typography, Box } from '@mui/material'
+import styled from '@emotion/styled'
 
 export default function Content() {
 	const posts = useSelector(state => state.posts.posts)
@@ -11,15 +12,17 @@ export default function Content() {
 		setNumberOfPosts(numberOfPosts + 8)
 	}
 
+	const PostWrap = styled(Container)(() => ({
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 0,
+		marginBottom: '16px',
+	}))
+
 	return (
 		<>
-			<Box
-				sx={{
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}
-			>
+			<Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
 				<Typography variant='h1' fontSize={52}>
 					All posts
 				</Typography>
@@ -34,14 +37,7 @@ export default function Content() {
 				})}
 			</Grid>
 			{posts.length > 0 && (
-				<Container
-					sx={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						p: 0,
-					}}
-				>
+				<PostWrap>
 					{numberOfPosts < posts.length ? (
 						<Button variant='text' onClick={handleClickShowMore}>
 							Show more
@@ -49,7 +45,7 @@ export default function Content() {
 					) : (
 						<Typography>No more posts</Typography>
 					)}
-				</Container>
+				</PostWrap>
 			)}
 		</>
 	)
