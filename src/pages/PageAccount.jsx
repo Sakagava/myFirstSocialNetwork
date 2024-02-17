@@ -2,15 +2,21 @@ import { useSelector } from 'react-redux'
 import ContentBlock from '../components/ContentBlock'
 import { Container, Box, Typography, Paper, Avatar, Stack } from '@mui/material'
 import styled from '@emotion/styled'
+import Title from '../styles/Title'
+import { useInView } from 'react-intersection-observer'
 
 export default function PageAccount() {
 	const user = useSelector(state => state.users.currentUser)
 	const posts = useSelector(state => state.posts.posts)
+	const [ref, inView] = useInView({
+		threshold: 0.5,
+		triggerOnce: true,
+	})
 
 	const InfoBlockWrap = styled(Paper)(() => ({
 		display: 'flex',
 		flexDirection: 'column',
-		width: '30%',
+		width: '35%',
 		paddingTop: '4%',
 	}))
 
@@ -22,13 +28,11 @@ export default function PageAccount() {
 
 	return (
 		<Container>
-			<Typography variant='h1' textAlign={'center'} fontSize={52}>
-				{user.name}
-			</Typography>
+			<Title>{user.name}</Title>
 			<AvatarWrap>
 				<Avatar
 					alt={`User ${user.id}`}
-					src={`/src/assets/usersPhoto/photo${user.id}.jpeg`}
+					src={`/src/assets/img/usersPhoto/photo${user.id}.jpeg`}
 					sx={{ width: '400px', height: '400px' }}
 				/>
 			</AvatarWrap>

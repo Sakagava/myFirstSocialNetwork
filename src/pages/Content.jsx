@@ -1,18 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ContentBlock from '../components/ContentBlock'
 import { useSelector } from 'react-redux'
-import { Grid, Button, Container, Typography, Box } from '@mui/material'
+import { Grid, Typography, CircularProgress, Box } from '@mui/material'
 import styled from '@emotion/styled'
+import { useInView } from 'react-intersection-observer'
+import Title from '../styles/Title'
 
 export default function Content() {
 	const posts = useSelector(state => state.posts.posts)
-	const [numberOfPosts, setNumberOfPosts] = useState(8)
+	const [numberOfPosts, setNumberOfPosts] = useState(20)
+	const [ref, inView] = useInView({
+		threshold: 0.5,
+		triggerOnce: true,
+	})
 
-	function handleClickShowMore() {
+	useEffect(() => {
 		setNumberOfPosts(numberOfPosts + 8)
-	}
+	}, [inView])
 
-	const PostWrap = styled(Container)(() => ({
+	const NoMorePosts = styled(Typography)(() => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -22,31 +28,32 @@ export default function Content() {
 
 	return (
 		<>
-			<Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-				<Typography variant='h1' fontSize={52}>
-					All posts
-				</Typography>
-			</Box>
+			<Title>All posts</Title>
 			<Grid container spacing={{ md: 2 }} p={5}>
-				{posts.slice(0, numberOfPosts).map(post => {
-					return (
+				{posts.slice(0, numberOfPosts).map((post, index) => {
+					return index + 1 == numberOfPosts ? (
+						<Grid item xs={12} md={4} lg={3} key={post.id} ref={ref}>
+							<ContentBlock post={post} numberOfPosts={numberOfPosts} />
+						</Grid>
+					) : (
 						<Grid item xs={12} md={4} lg={3} key={post.id}>
-							<ContentBlock post={post} />
+							<ContentBlock post={post} numberOfPosts={numberOfPosts} />
 						</Grid>
 					)
 				})}
 			</Grid>
-			{posts.length > 0 && (
-				<PostWrap>
-					{numberOfPosts < posts.length ? (
-						<Button variant='text' onClick={handleClickShowMore}>
-							Show more
-						</Button>
-					) : (
-						<Typography>No more posts</Typography>
-					)}
-				</PostWrap>
-			)}
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+				}}
+			>
+				{numberOfPosts >= posts.length ? (
+					<NoMorePosts>No more posts</NoMorePosts>
+				) : (
+					<CircularProgress sx={{ color: 'black' }} />
+				)}
+			</Box>
 		</>
 	)
 }

@@ -4,7 +4,6 @@ import { sortUsers } from '../store/users'
 import { setPage } from '../store/navigation'
 import { setCurrentUser } from '../store/users'
 import {
-	Card,
 	CardHeader,
 	Avatar,
 	Container,
@@ -70,7 +69,7 @@ function PageAllAccounts() {
 					<UserCard
 						variant='outlined'
 						key={user.id}
-						onClick={e => {
+						onClick={() => {
 							dispatch(setPage('Account'))
 							dispatch(setCurrentUser(user.id))
 						}}
@@ -80,7 +79,7 @@ function PageAllAccounts() {
 								<Avatar
 									aria-label='recipe'
 									alt={`User ${user.name}`}
-									src={`/src/assets/usersPhoto/photo${user.id}.jpeg`}
+									src={`/src/assets/img/usersPhoto/photo${user.id}.jpeg`}
 									sx={{ width: 100, height: 100 }}
 								></Avatar>
 							}

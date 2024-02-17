@@ -6,9 +6,10 @@ import PageAccount from './pages/PageAccount.jsx'
 import PageAllAccounts from './pages/PageAllAccounts.jsx'
 import Home from './pages/PageHome.jsx'
 import AboutUs from './pages/AboutUs.jsx'
-import { fetchPosts } from './store/posts'
+import { addCommentsInPosts, fetchPosts } from './store/posts'
 import { fetchUsers } from './store/users.js'
 import { useDispatch, useSelector } from 'react-redux'
+import { addLikeToComment } from './store/posts'
 
 function App() {
 	const page = useSelector(state => state.navigation.currentPage)
@@ -17,10 +18,11 @@ function App() {
 	useEffect(() => {
 		dispatch(fetchPosts())
 		dispatch(fetchUsers())
+		dispatch(addCommentsInPosts())
 	}, [dispatch])
 
 	useEffect(() => {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
+		window.scrollTo({ top: 0 })
 	}, [page])
 
 	return (

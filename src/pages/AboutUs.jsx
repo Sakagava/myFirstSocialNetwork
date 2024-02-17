@@ -1,4 +1,5 @@
 import { Container, Typography } from '@mui/material'
+import Title from '../styles/Title'
 
 function AboutUs() {
 	return (
@@ -11,9 +12,7 @@ function AboutUs() {
 				height: '75vh',
 			}}
 		>
-			<Typography variant='h1' color='text.black'>
-				About
-			</Typography>
+			<Title>About</Title>
 			<Typography textAlign='center'>
 				On this project, I consolidated my knowledge acquired <br />
 				while studying the React documentation

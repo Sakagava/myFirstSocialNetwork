@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { setPage } from '../store/navigation'
 import { Typography, Box, Button } from '@mui/material'
 import styled from '@emotion/styled'
+import Title from '../styles/Title'
 
 function Home() {
 	const dispatch = useDispatch()
@@ -23,9 +24,7 @@ function Home() {
 	return (
 		<div className='home'>
 			<TitleWrap>
-				<Typography variant='h1' fontSize={52}>
-					Join a friendly community
-				</Typography>
+				<Title>Join a friendly community</Title>
 				<Typography marginBottom={'20px'}>
 					Express your ideas in posts and read the ideas of other people from
 					all over the planet

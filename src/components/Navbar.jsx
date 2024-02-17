@@ -10,6 +10,7 @@ function Navbar() {
 	const NavWpar = styled(Box)(() => ({
 		display: 'flex',
 		justifyContent: 'center',
+		marginBottom: '30px',
 	}))
 
 	const ButtonWrap = styled(Box)(() => ({
@@ -22,6 +23,10 @@ function Navbar() {
 	const NavButton = styled(Button)(() => ({
 		minWidth: 100,
 		cursor: 'pointer',
+		color: 'black',
+		':hover': {
+			backgroundColor: '#eeeeee',
+		},
 	}))
 
 	return (
