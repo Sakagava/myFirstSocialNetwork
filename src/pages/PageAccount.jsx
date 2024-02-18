@@ -1,30 +1,12 @@
 import { useSelector } from 'react-redux'
 import ContentBlock from '../components/ContentBlock'
 import { Container, Box, Typography, Paper, Avatar, Stack } from '@mui/material'
-import styled from '@emotion/styled'
-import Title from '../styles/Title'
-import { useInView } from 'react-intersection-observer'
+import Title from '../components/Title'
+import { InfoBlockWrap, AvatarWrap } from '../styles/Account'
 
 export default function PageAccount() {
 	const user = useSelector(state => state.users.currentUser)
 	const posts = useSelector(state => state.posts.posts)
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: true,
-	})
-
-	const InfoBlockWrap = styled(Paper)(() => ({
-		display: 'flex',
-		flexDirection: 'column',
-		width: '35%',
-		paddingTop: '4%',
-	}))
-
-	const AvatarWrap = styled(Box)(() => ({
-		display: 'flex',
-		justifyContent: 'center',
-		marginBottom: '30px',
-	}))
 
 	return (
 		<Container>
@@ -98,7 +80,7 @@ export default function PageAccount() {
 			<Stack direction={'column'} spacing={2}>
 				{posts.map(post => {
 					if (post.userId == user.id) {
-						return <ContentBlock post={post} />
+						return <ContentBlock key={post.id} post={post} />
 					}
 				})}
 			</Stack>

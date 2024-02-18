@@ -1,5 +1,5 @@
 import { Container, Typography } from '@mui/material'
-import Title from '../styles/Title'
+import Title from '../components/Title'
 
 function AboutUs() {
 	return (

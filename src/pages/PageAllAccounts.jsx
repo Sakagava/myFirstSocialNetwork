@@ -7,14 +7,12 @@ import {
 	CardHeader,
 	Avatar,
 	Container,
-	Box,
 	FormControl,
 	InputLabel,
 	Select,
 	MenuItem,
-	Paper,
 } from '@mui/material'
-import styled from '@emotion/styled'
+import { InputWrap, UserCard } from '../styles/AllAccounts'
 
 function PageAllAccounts() {
 	const users = useSelector(state => state.users.users)
@@ -25,27 +23,6 @@ function PageAllAccounts() {
 		setSortBy(e.target.value)
 		dispatch(sortUsers(e.target.value.toLowerCase()))
 	}
-
-	const InputWrap = styled(Box)(() => ({
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		width: '100%',
-		marginBottom: '20px',
-	}))
-
-	const UserCard = styled(Paper)(() => ({
-		height: { xs: 135, sm: 135, md: 135, lg: 135, xl: 135 },
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		marginBottom: '10px',
-		cursor: 'pointer',
-		transition: '0.2s',
-		':hover': {
-			backgroundColor: '#eeeeee',
-		},
-	}))
 
 	return (
 		<Container sx={{ paddingTop: '20px' }}>

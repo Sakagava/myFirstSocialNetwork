@@ -1,25 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { setPage } from '../store/navigation'
-import { Typography, Box, Button } from '@mui/material'
-import styled from '@emotion/styled'
-import Title from '../styles/Title'
+import { Typography, Box } from '@mui/material'
+import Title from '../components/Title'
+import { TitleWrap, MainButton } from '../styles/Home'
 
 function Home() {
 	const dispatch = useDispatch()
-	const TitleWrap = styled(Box)(() => ({
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		paddingTop: '20px',
-	}))
-	const MainButton = styled(Button)(() => ({
-		width: '49.5%',
-		height: '730px',
-		cursor: 'pointer',
-		fontSize: '50px',
-		borderRadius: '20px',
-		transition: '0.5s',
-	}))
 
 	return (
 		<div className='home'>

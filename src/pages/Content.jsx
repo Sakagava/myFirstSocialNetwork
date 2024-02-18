@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import ContentBlock from '../components/ContentBlock'
 import { useSelector } from 'react-redux'
-import { Grid, Typography, CircularProgress, Box } from '@mui/material'
-import styled from '@emotion/styled'
+import { Grid, CircularProgress, Box } from '@mui/material'
 import { useInView } from 'react-intersection-observer'
-import Title from '../styles/Title'
+import Title from '../components/Title'
+import { NoMorePosts } from '../styles/Content'
 
 export default function Content() {
 	const posts = useSelector(state => state.posts.posts)
@@ -17,14 +17,6 @@ export default function Content() {
 	useEffect(() => {
 		setNumberOfPosts(numberOfPosts + 8)
 	}, [inView])
-
-	const NoMorePosts = styled(Typography)(() => ({
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		padding: 0,
-		marginBottom: '16px',
-	}))
 
 	return (
 		<>

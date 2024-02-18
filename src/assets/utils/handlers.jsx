@@ -1,17 +1,24 @@
-import { addLikeInPost } from '../../store/posts'
+import { addLikeToComment, addLikeToPost } from '../../store/posts'
 
-export const handleClickLike = (post, dispatch) => {
-	const newLikeCount = post.like > 0 ? post.like - 1 : post.like + 1
+export function handleClickLikePost(dispatch, post) {
+	const newLikeCount = post.like ? (post.like || 0) - 1 : (post.like || 0) + 1
 	dispatch(
-		addLikeInPost({
+		addLikeToPost({
 			idPost: post.id,
 			numOfLikes: newLikeCount,
 		})
 	)
 }
 
-export const handleClickLikeComment = (comment, post, dispatch) => {
-	const newLikeCount = comment.like > 0 ? comment.like - 1 : comment.like + 1
-	// Update the comment's like count
-	// Here you need to dispatch an action to update the comment's like count in the store
+export function handleClickLikeComment(dispatch, post, idComment) {
+	const comment = post.comments.find(comm => comm.id === idComment)
+	if (comment) {
+		const newLikeCount = comment.likes ? 0 : 1
+		dispatch(
+			addLikeToComment({
+				idComment: idComment,
+				numOfLikes: newLikeCount,
+			})
+		)
+	}
 }
