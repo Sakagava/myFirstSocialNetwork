@@ -22,18 +22,24 @@ export default function ContentBlock({ post }) {
 	const user = users.find(user => user.id === post.userId)
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState(false)
-
-	let commentsValue = 0
-	const isLiked = post.like > 0
-
-	try {
-		commentsValue = post.comments.length
-	} catch {
-		commentsValue = 'Error'
-	}
+	const [isLiked, setIsLiked] = useState(post.like > 0)
+	const [likeValue, setLikeValue] = useState(post.like)
+	const loading = useSelector(state => state.posts.loading)
+	let commentsValue = post.comments.length
 
 	function handleClickLikePost() {
+		if (loading) {
+			return
+		}
+
 		const newLikeCount = post.like ? (post.like || 0) - 1 : (post.like || 0) + 1
+		setIsLiked(!isLiked)
+		if (likeValue == undefined) {
+			setLikeValue(1)
+		} else {
+			setLikeValue(newLikeCount)
+		}
+
 		dispatch(
 			addLikeToPost({
 				idPost: post.id,
@@ -64,7 +70,7 @@ export default function ContentBlock({ post }) {
 					}}
 				>
 					<IconButton onClick={handleClickLikePost}>
-						<Badge badgeContent={post.like} color='secondary'>
+						<Badge badgeContent={likeValue} color='secondary'>
 							{isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
 						</Badge>
 					</IconButton>

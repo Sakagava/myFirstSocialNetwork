@@ -2,8 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchPosts = createAsyncThunk('fetchPosts', async () => {
-	const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-	return await response.json()
+	const responsePosts = await fetch(
+		'https://jsonplaceholder.typicode.com/posts'
+	)
+	const dataPosts = await responsePosts.json()
+	const responseComments = await fetch(
+		'https://jsonplaceholder.typicode.com/comments'
+	)
+	const dataComments = await responseComments.json()
+	return { dataPosts, dataComments }
 })
 
 export const addLikeToPost = createAsyncThunk(
@@ -20,16 +27,6 @@ export const addLikeToPost = createAsyncThunk(
 					'Content-type': 'application/json; charset=UTF-8',
 				},
 			}
-		)
-		return await response.json()
-	}
-)
-
-export const addCommentsInPosts = createAsyncThunk(
-	'addCommentsInPosts',
-	async () => {
-		const response = await fetch(
-			'https://jsonplaceholder.typicode.com/comments'
 		)
 		return await response.json()
 	}
@@ -64,12 +61,28 @@ const posts = createSlice({
 	extraReducers: builder => {
 		builder
 			.addCase(fetchPosts.pending, state => {
+				if (state.posts[0] == undefined) {
+					state.loading = true
+				}
+			})
+
+			.addCase(fetchPosts.fulfilled, (state, action) => {
+				if (state.posts[0] == undefined) {
+					const posts = action.payload.dataPosts.map(post => {
+						post.comments = action.payload.dataComments.filter(
+							comm => comm.postId == post.id
+						)
+						return post
+					})
+					state.posts = posts
+					state.loading = false
+				}
+			})
+
+			.addCase(addLikeToPost.pending, state => {
 				state.loading = true
 			})
-			.addCase(fetchPosts.fulfilled, (state, action) => {
-				state.posts = action.payload
-				state.loading = false
-			})
+
 			.addCase(addLikeToPost.fulfilled, (state, action) => {
 				const index = state.posts.findIndex(
 					post => post.id === action.payload.id
@@ -78,13 +91,13 @@ const posts = createSlice({
 				if (index !== -1) {
 					state.posts[index].like = action.payload.like
 				}
+				state.loading = false
 			})
-			.addCase(addCommentsInPosts.fulfilled, (state, action) => {
-				state.posts = state.posts.map(post => {
-					post.comments = action.payload.filter(comm => comm.postId == post.id)
-					return post
-				})
+
+			.addCase(addLikeToComment.pending, state => {
+				state.loading = true
 			})
+
 			.addCase(addLikeToComment.fulfilled, (state, action) => {
 				const postIndex = state.posts.findIndex(
 					post => post.id === action.payload.postId
@@ -99,8 +112,10 @@ const posts = createSlice({
 						likes: action.payload.like,
 					}
 				}
+				state.loading = false
 			})
 	},
 })
 
+export const { initPosts } = posts.reducer
 export default posts.reducer

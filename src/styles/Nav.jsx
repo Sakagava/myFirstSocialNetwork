@@ -4,14 +4,18 @@ import styled from '@emotion/styled'
 
 export const NavWpar = styled(Box)(() => ({
 	display: 'flex',
+	position: 'sticky',
+	top: '0px',
 	justifyContent: 'center',
 	marginBottom: '30px',
+	backgroundColor: 'white',
+	paddingTop: '10px',
+	zIndex: '20',
 }))
 
 export const ButtonWrap = styled(Box)(() => ({
 	display: 'flex',
 	justifyContent: 'space-between',
-	paddingTop: '20px',
 	width: '60%',
 }))
 

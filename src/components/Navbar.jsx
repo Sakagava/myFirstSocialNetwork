@@ -1,23 +1,30 @@
-import { setPage } from '../store/navigation'
-import { useDispatch } from 'react-redux'
 import { NavWpar, ButtonWrap, NavButton } from '../styles/Nav'
+import { Link, Outlet } from 'react-router-dom'
 
 function Navbar() {
-	const dispatch = useDispatch()
-
 	return (
-		<NavWpar>
-			<ButtonWrap>
-				<NavButton onClick={() => dispatch(setPage('Home'))}>Home</NavButton>
-				<NavButton onClick={() => dispatch(setPage('Posts'))}>Posts</NavButton>
-				<NavButton onClick={() => dispatch(setPage('AllAccounts'))}>
-					Accounts
-				</NavButton>
-				<NavButton onClick={() => dispatch(setPage('AboutUs'))}>
-					About
-				</NavButton>
-			</ButtonWrap>
-		</NavWpar>
+		<>
+			<NavWpar>
+				<ButtonWrap>
+					<Link to={'/'}>
+						<NavButton>Home</NavButton>
+					</Link>
+
+					<Link to={'/posts'}>
+						<NavButton>Posts</NavButton>
+					</Link>
+					<Link to={'/users'}>
+						<NavButton>Accounts</NavButton>
+					</Link>
+					<Link to={'/about'}>
+						<NavButton>About Us</NavButton>
+					</Link>
+				</ButtonWrap>
+			</NavWpar>
+			<div id='detail'>
+				<Outlet />
+			</div>
+		</>
 	)
 }
 

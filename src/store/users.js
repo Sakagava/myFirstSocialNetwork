@@ -16,9 +16,6 @@ const users = createSlice({
 		currentUser: {},
 	},
 	reducers: {
-		setCurrentUser: (state, action) => {
-			state.currentUser = state.users.find(user => user.id === action.payload)
-		},
 		sortUsers: (state, action) => {
 			state.sortBy = action.payload
 			switch (action.payload) {
