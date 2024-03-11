@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import store from './store/store.js'
+import store, { persistor } from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
@@ -11,6 +11,9 @@ import './App.css'
 import PageAllAccounts from './pages/PageAllAccounts.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 import PageAccount from './pages/PageAccount.jsx'
+import { Registration } from './pages/Registration.jsx'
+import { PersistGate } from 'redux-persist/integration/react'
+import { LoginPage } from './pages/LoginPage.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -38,6 +41,14 @@ const router = createBrowserRouter([
 						path: 'users/user/:id',
 						element: <PageAccount />,
 					},
+					{
+						path: 'registration',
+						element: <Registration />,
+					},
+					{
+						path: 'login',
+						element: <LoginPage />,
+					},
 				],
 			},
 		],
@@ -47,7 +58,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<PersistGate loading={null} persistor={persistor}>
+				<RouterProvider router={router} basename={process.env.PUBLIC_URL} />
+			</PersistGate>
 		</Provider>
 	</React.StrictMode>
 )

@@ -3,6 +3,7 @@ import Divider from '@mui/material/Divider'
 import Comment from './Comment'
 import UserDie from './UserDie'
 import { postModal } from '../styles/Content'
+import { AddComment } from './AddComment'
 
 export default function PostModal({ user, post }) {
 	return (
@@ -21,6 +22,7 @@ export default function PostModal({ user, post }) {
 						return <Comment key={comment.id} post={post} comment={comment} />
 					})}
 			</Box>
+			<AddComment post={post} />
 		</Box>
 	)
 }

@@ -3,31 +3,42 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { addLikeToComment } from '../store/posts'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function Comment({ post, comment }) {
+export default function Comment({ comment }) {
 	const dispatch = useDispatch()
-	const [isLiked, setIsLiked] = useState(comment.likes > 0)
-	const [likeValue, setLikeValue] = useState(comment.likes)
+	const authUser = useSelector(state => state.users.authUser)
+	let isLiked = comment.likes ? comment.likes.includes(authUser.id) : false
+	let likeValue = comment.likes ? comment.likes.length : 0
 	const loading = useSelector(state => state.posts.loading)
+	const navigate = useNavigate()
 
 	function handleClickLikeComment() {
 		if (loading) {
 			return
 		}
 
-		setIsLiked(!isLiked)
-		const newLikeCount = comment.likes ? 0 : comment.likes + 1
-		if (likeValue == undefined) {
-			setLikeValue(1)
-		} else {
-			setLikeValue(newLikeCount)
+		if (!authUser.username) {
+			navigate('/login')
+			return
 		}
+
+		isLiked ? likeValue-- : likeValue++
+		isLiked = !isLiked
+		const newLikesArr =
+			comment.likes == undefined
+				? [authUser.id]
+				: comment.likes.includes(authUser.id)
+				? comment.likes.filter(id => id !== authUser.id)
+				: comment.likes.length == 0
+				? [authUser.id]
+				: [...comment.likes, authUser.id]
 
 		dispatch(
 			addLikeToComment({
 				idComment: comment.id,
-				numOfLikes: newLikeCount,
+				numOfLikes: newLikesArr,
+				postId: comment.postId,
 			})
 		)
 	}
@@ -38,8 +49,8 @@ export default function Comment({ post, comment }) {
 				marginBottom: '20px',
 				padding: '10px',
 				display: 'flex',
-				justifyContent: 'space-between', // Добавлено для центрирования
-				alignItems: 'center', // Добавлено для центрирования
+				justifyContent: 'space-between',
+				alignItems: 'center',
 			}}
 			variant='outlined'
 			key={comment.id}

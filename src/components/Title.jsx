@@ -5,6 +5,7 @@ const TitleTypography = styled(Typography)(() => ({
 	display: 'flex',
 	justifyContent: 'center',
 	fontSize: '52px',
+	marginBottom: '10px',
 }))
 
 export default function Title({ children }) {

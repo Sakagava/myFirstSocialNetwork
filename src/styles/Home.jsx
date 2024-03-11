@@ -5,7 +5,7 @@ export const TitleWrap = styled(Box)(() => ({
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'center',
-	paddingTop: '20px',
+	paddingTop: '0px',
 }))
 export const MainButton = styled(Button)(() => ({
 	width: '49.5%',

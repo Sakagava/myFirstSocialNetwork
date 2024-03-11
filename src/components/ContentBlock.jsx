@@ -16,34 +16,44 @@ import { useState } from 'react'
 import { addLikeToPost } from '../store/posts'
 import PostModal from './PostModal'
 import UserDie from './UserDie'
+import { useNavigate } from 'react-router-dom'
 
 export default function ContentBlock({ post }) {
 	const users = useSelector(state => state.users.users)
 	const user = users.find(user => user.id === post.userId)
+	const authUser = useSelector(state => state.users.authUser)
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState(false)
-	const [isLiked, setIsLiked] = useState(post.like > 0)
-	const [likeValue, setLikeValue] = useState(post.like)
+	let isLiked = post.likes ? post.likes.includes(authUser.id) : false
 	const loading = useSelector(state => state.posts.loading)
+	let likeValue = post.likes ? post.likes.length : 0
 	let commentsValue = post.comments.length
+
+	const navigate = useNavigate()
 
 	function handleClickLikePost() {
 		if (loading) {
 			return
 		}
 
-		const newLikeCount = post.like ? (post.like || 0) - 1 : (post.like || 0) + 1
-		setIsLiked(!isLiked)
-		if (likeValue == undefined) {
-			setLikeValue(1)
-		} else {
-			setLikeValue(newLikeCount)
+		if (!authUser.username) {
+			navigate('/login')
+			return
 		}
 
+		const newLikesArr =
+			post.likes == undefined
+				? [authUser.id]
+				: post.likes.includes(authUser.id)
+				? post.likes.filter(id => id !== authUser.id)
+				: post.likes.length == 0
+				? [authUser.id]
+				: [...post.like, authUser.id]
 		dispatch(
 			addLikeToPost({
-				idPost: post.id,
-				numOfLikes: newLikeCount,
+				newLikesArr: newLikesArr,
+				postId: post.id,
+				userId: authUser.id,
 			})
 		)
 	}

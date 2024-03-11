@@ -23,7 +23,9 @@ function PageAllAccounts() {
 	}, [])
 
 	useEffect(() => {
-		dispatch(fetchUsers())
+		if (!users.length) {
+			dispatch(fetchUsers())
+		}
 	}, [dispatch])
 
 	const handleChange = e => {
@@ -51,6 +53,7 @@ function PageAllAccounts() {
 			{users.map(user => {
 				return (
 					<Link
+						key={user.id}
 						to={`/users/user/${user.id}`}
 						style={{ padding: '0', textDecoration: 'none', color: 'inherit' }}
 					>

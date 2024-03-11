@@ -2,8 +2,12 @@ import { Typography, Box } from '@mui/material'
 import Title from '../components/Title'
 import { TitleWrap, MainButton } from '../styles/Home'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Home() {
+	const authUser = useSelector(state => state.users.authUser)
+	const pathCreatePost = authUser.name ? '/posts' : '/registration'
+
 	return (
 		<div className='home'>
 			<TitleWrap>
@@ -18,7 +22,9 @@ function Home() {
 					Read posts
 				</MainButton>
 
-				<MainButton>Create posts</MainButton>
+				<MainButton component={Link} to={pathCreatePost}>
+					Create posts
+				</MainButton>
 			</Box>
 		</div>
 	)
