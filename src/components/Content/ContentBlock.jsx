@@ -13,9 +13,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CommentIcon from '@mui/icons-material/Comment'
 import { useState } from 'react'
-import { addLikeToPost } from '../store/posts'
-import PostModal from './PostModal'
-import UserDie from './UserDie'
+import { addLikeToPost } from '../../store/posts'
+import PostModal from '../PostModal'
+import UserDie from '../UserDie'
 import { useNavigate } from 'react-router-dom'
 
 export default function ContentBlock({ post }) {
@@ -37,7 +37,7 @@ export default function ContentBlock({ post }) {
 		}
 
 		if (!authUser.username) {
-			navigate('/login')
+			navigate('/myFirstSocialNetwork/login')
 			return
 		}
 
@@ -95,11 +95,15 @@ export default function ContentBlock({ post }) {
 					<Typography
 						variant='h5'
 						color='text.black'
-						sx={{ marginBottom: '10px' }}
+						sx={{ marginBottom: '10px', wordWrap: 'break-word' }}
 					>
 						{post.title[0].toUpperCase() + post.title.slice(1)}
 					</Typography>
-					<Typography variant='body2' color='text.secondary'>
+					<Typography
+						variant='body2'
+						color='text.secondary'
+						sx={{ wordWrap: 'break-word' }}
+					>
 						{post.body[0].toUpperCase() + post.body.slice(1)}
 					</Typography>
 				</CardContent>

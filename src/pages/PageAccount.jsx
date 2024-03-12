@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import ContentBlock from '../components/ContentBlock'
+import ContentBlock from '../components/Content/ContentBlock'
 import {
 	Container,
 	Box,
@@ -14,10 +14,11 @@ import {
 import Title from '../components/Title'
 import { InfoBlockWrap, AvatarWrap } from '../styles/Account'
 import { useEffect, useState } from 'react'
-import { fetchPosts } from '../store/posts'
-import { fetchUsers, patchAuthUser } from '../store/users'
+import { patchAuthUser } from '../store/users'
 import { useParams } from 'react-router-dom'
 import EditIcon from '@mui/icons-material/Edit'
+import { useFetchPosts } from '../hooks/useCheckPosts'
+import { useFetchUsers } from '../hooks/useCheckUsers'
 
 export default function PageAccount() {
 	const posts = useSelector(state => state.posts.posts)
@@ -36,31 +37,14 @@ export default function PageAccount() {
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
 	}, [])
-	useEffect(() => {
-		if (!posts.length) {
-			dispatch(fetchPosts())
-		}
-		if (!users.length) {
-			dispatch(fetchUsers())
-		}
-	}, [dispatch])
+
+	useFetchPosts()
+	useFetchUsers()
 
 	if (!loading) {
 		allPostsUser = posts.filter(post => {
 			return post.userId == user.id
 		})
-	}
-
-	const handleClickCloseEditBasics = () => {
-		user.username == authUser.username && setEditBasics(!editBasics)
-	}
-
-	const handleClickCloseEditAddress = () => {
-		user.username == authUser.username && setEditAddress(!editAddress)
-	}
-
-	const handleClickCloseEditCompany = () => {
-		user.username == authUser.username && setEditCompany(!editCompany)
 	}
 
 	const handleClickEditBasics = () => {
@@ -127,34 +111,42 @@ export default function PageAccount() {
 	return (
 		<>
 			{loading || loading == null ? (
-				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'center',
-					}}
-				>
+				<CenteringWrap>
 					<CircularProgress sx={{ color: 'black' }} />
-				</Box>
+				</CenteringWrap>
 			) : (
 				<Container>
 					<Title>{user.name}</Title>
 					<AvatarWrap>
 						<Avatar
 							alt={`User ${user.id}`}
-							src={`/src/assets/img/usersPhoto/photo${user.id}.jpeg`}
-							sx={{ width: '400px', height: '400px' }}
+							sx={{
+								width: '50vw',
+								maxWidth: '350px',
+								height: '50vw',
+								maxHeight: '350px',
+							}}
 						>
 							<Typography variant='h2'>{user.name[0]}</Typography>
 						</Avatar>
 					</AvatarWrap>
 					<Stack
-						direction='row'
+						direction={{ xs: 'column', sm: 'row' }}
 						spacing={2}
-						alignItems={'stretch'}
-						height={'500px'}
-						marginBottom={'150px'}
+						alignItems='cenert'
+						height={{ xs: 'auto', sm: '500px' }}
+						marginBottom={{ xs: '50px', sm: '150px' }}
+						width={{ xs: '100%', sm: 'auto' }}
+						justifyContent='space-between'
 					>
-						<InfoBlockWrap elevation={3} square={false}>
+						<InfoBlockWrap
+							sx={{
+								width: { xs: '100%', sx: '35%' },
+								height: { xs: '450px', sm: '620px' },
+							}}
+							elevation={3}
+							square={false}
+						>
 							<Box>
 								<Box
 									sx={{
@@ -224,7 +216,14 @@ export default function PageAccount() {
 								<Button onClick={handleClickEditBasics}>Save</Button>
 							)}
 						</InfoBlockWrap>
-						<InfoBlockWrap elevation={3} square={false}>
+						<InfoBlockWrap
+							sx={{
+								width: { xs: '100%', sx: '35%' },
+								height: { xs: '570px', sm: '620px' },
+							}}
+							elevation={3}
+							square={false}
+						>
 							<Box>
 								<Box
 									sx={{
@@ -311,7 +310,14 @@ export default function PageAccount() {
 								<Button onClick={handleClickEditAddress}>Save</Button>
 							)}
 						</InfoBlockWrap>
-						<InfoBlockWrap elevation={3} square={false}>
+						<InfoBlockWrap
+							sx={{
+								width: { xs: '100%', sx: '35%' },
+								height: { xs: '400px', sm: '620px' },
+							}}
+							elevation={3}
+							square={false}
+						>
 							<Box>
 								<Box
 									sx={{

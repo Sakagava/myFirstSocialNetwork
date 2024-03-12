@@ -122,8 +122,6 @@ const posts = createSlice({
 			.addCase(addLikeToPost.fulfilled, (state, action) => {
 				const newLikesArr = action.payload[0].likes
 				const postId = action.payload[1]
-				const userId = action.payload[2]
-				console.log(action.payload)
 				state.posts = state.posts.map(post => {
 					return post.id == postId ? { ...post, likes: newLikesArr } : post
 				})
@@ -169,7 +167,6 @@ const posts = createSlice({
 			.addCase(addNewComment.fulfilled, (state, action) => {
 				const nextId = state.commentValue + 1
 				state.commentValue = nextId
-				console.log(nextId)
 				state.posts = state.posts.map(post => {
 					return post.id == action.payload.comments[0].postId
 						? { ...post, comments: action.payload.comments }

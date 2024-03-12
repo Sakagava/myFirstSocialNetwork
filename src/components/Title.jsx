@@ -6,8 +6,13 @@ const TitleTypography = styled(Typography)(() => ({
 	justifyContent: 'center',
 	fontSize: '52px',
 	marginBottom: '10px',
+	textAlign: 'center',
 }))
 
 export default function Title({ children }) {
-	return <TitleTypography variant={'h1'}>{children}</TitleTypography>
+	return (
+		<TitleTypography sx={{ fontSize: { xs: '30px' } }} variant={'h1'}>
+			{children}
+		</TitleTypography>
+	)
 }

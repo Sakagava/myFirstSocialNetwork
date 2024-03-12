@@ -17,7 +17,7 @@ import { LoginPage } from './pages/LoginPage.jsx'
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/myFirstSocialNetwork',
 		element: <Navbar />,
 		errorElement: <ErrorPage />,
 		children: [
@@ -59,7 +59,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<RouterProvider router={router} />
+				<RouterProvider router={router} basename='/myFirstSocialNetwork' />
 			</PersistGate>
 		</Provider>
 	</React.StrictMode>
