@@ -19,7 +19,7 @@ export default function Comment({ comment }) {
 		}
 
 		if (!authUser.username) {
-			navigate('/login')
+			navigate('/myFirstSocialNetwork/login')
 			return
 		}
 

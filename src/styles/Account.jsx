@@ -6,9 +6,7 @@ export const InfoBlockWrap = styled(Paper)(() => ({
 	position: 'relative',
 	flexDirection: 'column',
 	justifyContent: 'space-between',
-	width: '35%',
 	paddingTop: '4%',
-	height: '620px',
 }))
 
 export const AvatarWrap = styled(Box)(() => ({

@@ -1,23 +1,16 @@
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import Title from '../components/Title'
+import { CenteringWrap } from '../styles/utils'
 
 function AboutUs() {
 	return (
-		<Container
-			sx={{
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'center',
-				alignItems: 'center',
-				height: '75vh',
-			}}
-		>
+		<CenteringWrap height={'75vh'}>
 			<Title>About</Title>
 			<Typography textAlign='center'>
 				On this project, I consolidated my knowledge acquired <br />
 				while studying the React documentation
 			</Typography>
-		</Container>
+		</CenteringWrap>
 	)
 }
 

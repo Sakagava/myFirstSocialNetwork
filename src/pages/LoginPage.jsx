@@ -1,19 +1,13 @@
-import { TitleWrap } from '../styles/Home'
+import { CenteringWrap } from '../styles/utils'
 import Title from '../components/Title'
-import { Box, TextField, Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers } from '../store/users'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { logIn } from '../store/users'
-
-import IconButton from '@mui/material/IconButton'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputLabel from '@mui/material/InputLabel'
-import InputAdornment from '@mui/material/InputAdornment'
-import FormControl from '@mui/material/FormControl'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { InnerWrap } from '../styles/Login'
+import { LoginPasswordField, LoginUsernameField } from '../components/Fields'
+import { useFetchUsers } from '../hooks/useCheckUsers'
 
 export const LoginPage = () => {
 	let navigate = useNavigate()
@@ -22,16 +16,13 @@ export const LoginPage = () => {
 	const authUser = useSelector(state => state.users.authUser)
 	const [user, setUser] = useState({})
 	const [showPassword, setShowPassword] = useState(false)
+	const [error, setError] = useState(false)
 
 	useEffect(() => {
-		authUser.name !== undefined && navigate('/posts')
+		authUser.name !== undefined && navigate('/myFirstSocialNetwork/posts')
 	}, [authUser.username])
 
-	useEffect(() => {
-		if (!users.length) {
-			dispatch(fetchUsers())
-		}
-	}, [dispatch])
+	useFetchUsers()
 
 	const handleClickShowPassword = () => setShowPassword(show => !show)
 
@@ -41,6 +32,7 @@ export const LoginPage = () => {
 
 	const handleChangeUser = e => {
 		const { name, value } = e.target
+		setError(false)
 		setUser(prevUser => ({
 			...prevUser,
 			[name]: value,
@@ -48,60 +40,45 @@ export const LoginPage = () => {
 	}
 
 	const handleClickLogin = () => {
-		dispatch(logIn(user))
+		if (!users.includes(user => user.username == user.username)) {
+			setError(true)
+		} else {
+			dispatch(logIn(user))
+		}
 	}
 
 	return (
 		<>
-			<TitleWrap>
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						width: '70%',
-						alignItems: 'center',
-						paddingTop: '20vh',
-						marginBottom: '30px',
-						gap: '15px',
-					}}
-				>
+			<CenteringWrap>
+				<InnerWrap>
 					<Title>Sign in</Title>
-					<TextField
-						required
-						id='outlined-required'
-						label='Username'
-						name='username'
+					<LoginUsernameField error={error} onChange={handleChangeUser} />
+					<LoginPasswordField
+						showPassword={showPassword}
+						error={error}
+						handleClick={handleClickShowPassword}
+						handleMouseDown={handleMouseDownPassword}
+						handleChange={handleChangeUser}
+					/>
+					<Typography
+						component={Link}
+						to={'/myFirstSocialNetwork/registration'}
+						variant='subtitle1'
 						sx={{
-							m: 1,
+							color: '#3f50b5',
+							textAlign: 'left',
 							width: '25ch',
 						}}
-						onChange={handleChangeUser}
-					/>
-					<FormControl sx={{ m: 1, width: '25ch' }} variant='outlined'>
-						<InputLabel htmlFor='outlined-adornment-password'>
-							Password
-						</InputLabel>
-						<OutlinedInput
-							id='outlined-adornment-password'
-							type={showPassword ? 'text' : 'password'}
-							endAdornment={
-								<InputAdornment position='end'>
-									<IconButton
-										aria-label='toggle password visibility'
-										onClick={handleClickShowPassword}
-										onMouseDown={handleMouseDownPassword}
-										edge='end'
-									>
-										{showPassword ? <VisibilityOff /> : <Visibility />}
-									</IconButton>
-								</InputAdornment>
-							}
-							label='Password'
-							name='password'
-							onChange={handleChangeUser}
-						/>
-					</FormControl>
-				</Box>
+					>
+						Create account
+					</Typography>
+					{error && (
+						<Typography variant='subtitle1' color='#c62828'>
+							Incorrect username or password
+						</Typography>
+					)}
+				</InnerWrap>
+
 				<Button
 					variant='outlined'
 					sx={{ width: '240px', height: '45px' }}
@@ -109,7 +86,7 @@ export const LoginPage = () => {
 				>
 					Login
 				</Button>
-			</TitleWrap>
+			</CenteringWrap>
 		</>
 	)
 }

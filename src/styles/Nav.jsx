@@ -28,7 +28,7 @@ export const AccountButtonWrap = styled(Box)(() => ({
 }))
 
 export const NavButton = styled(Button)(() => ({
-	minWidth: 100,
+	minWidth: 30,
 	cursor: 'pointer',
 	color: 'black',
 	':hover': {

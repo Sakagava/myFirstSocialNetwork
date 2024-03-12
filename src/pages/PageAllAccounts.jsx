@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 import { InputWrap, UserCard } from '../styles/AllAccounts'
 import { Link } from 'react-router-dom'
+import { useFetchUsers } from '../hooks/useCheckUsers'
 
 function PageAllAccounts() {
 	const users = useSelector(state => state.users.users)
@@ -22,11 +23,7 @@ function PageAllAccounts() {
 		window.scrollTo({ top: 0 })
 	}, [])
 
-	useEffect(() => {
-		if (!users.length) {
-			dispatch(fetchUsers())
-		}
-	}, [dispatch])
+	useFetchUsers()
 
 	const handleChange = e => {
 		setSortBy(e.target.value)
@@ -54,7 +51,7 @@ function PageAllAccounts() {
 				return (
 					<Link
 						key={user.id}
-						to={`/users/user/${user.id}`}
+						to={`/myFirstSocialNetwork/users/user/${user.id}`}
 						style={{ padding: '0', textDecoration: 'none', color: 'inherit' }}
 					>
 						<UserCard variant='outlined' key={user.id}>
@@ -63,9 +60,10 @@ function PageAllAccounts() {
 									<Avatar
 										aria-label='recipe'
 										alt={`User ${user.name}`}
-										src={`/src/assets/img/usersPhoto/photo${user.id}.jpeg`}
 										sx={{ width: 100, height: 100 }}
-									></Avatar>
+									>
+										{user.username[0]}
+									</Avatar>
 								}
 								title={user?.username}
 								subheader={user?.name}
