@@ -71,7 +71,7 @@ export default function AccountMenu({ authUser, handleLogOut }) {
 								fontSize: { xs: '13px', sm: '20px' },
 							}}
 						>
-							M
+							{authUser.username ? authUser.username[0] : 'M'}
 						</Avatar>
 					</IconButton>
 				</Tooltip>
@@ -111,21 +111,30 @@ export default function AccountMenu({ authUser, handleLogOut }) {
 				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
-				<MenuItem
-					component={Link}
-					to={`/myFirstSocialNetwork/users/user/${authUser.id}`}
-					onClick={handleClose}
-				>
-					<Avatar>M</Avatar> Profile
-				</MenuItem>
+				{authUser.username ? (
+					<MenuItem
+						component={Link}
+						to={`/myFirstSocialNetwork/users/user/${authUser.id}`}
+					>
+						<Avatar>{authUser.username[0]}</Avatar> Profile
+					</MenuItem>
+				) : (
+					<MenuItem component={Link} to={'/myFirstSocialNetwork/login'}>
+						<Typography>Login</Typography>
+					</MenuItem>
+				)}
 
 				<Divider />
-				<MenuItem onClick={handleLogOut}>
-					<ListItemIcon>
+				{authUser.username ? (
+					<MenuItem onClick={handleLogOut}>
 						<Logout fontSize='small' />
-					</ListItemIcon>
-					Logout
-				</MenuItem>
+						Logout
+					</MenuItem>
+				) : (
+					<MenuItem component={Link} to={'/myFirstSocialNetwork/registration'}>
+						<Typography>Register</Typography>
+					</MenuItem>
+				)}
 			</Menu>
 		</>
 	)

@@ -11,7 +11,13 @@ const TitleTypography = styled(Typography)(() => ({
 
 export default function Title({ children }) {
 	return (
-		<TitleTypography sx={{ fontSize: { xs: '30px' } }} variant={'h1'}>
+		<TitleTypography
+			sx={{
+				fontSize: { xs: '30px', sm: '35px', md: '40px' },
+				paddingTop: { xs: '30px', sm: '25px', md: '0' },
+			}}
+			variant={'h1'}
+		>
 			{children}
 		</TitleTypography>
 	)

@@ -19,6 +19,7 @@ import { useParams } from 'react-router-dom'
 import EditIcon from '@mui/icons-material/Edit'
 import { useFetchPosts } from '../hooks/useCheckPosts'
 import { useFetchUsers } from '../hooks/useCheckUsers'
+import { CenteringWrap } from '../styles/utils'
 
 export default function PageAccount() {
 	const posts = useSelector(state => state.posts.posts)

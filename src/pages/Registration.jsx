@@ -188,7 +188,7 @@ export const Registration = () => {
 				</InnerWrap>
 				<Button
 					variant='outlined'
-					sx={{ width: '300px', height: '50px' }}
+					sx={{ width: { sm: '200px', md: '350px' }, height: '50px' }}
 					onClick={e => handleRegister(e)}
 				>
 					Register
