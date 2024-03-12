@@ -41,7 +41,7 @@ function Navbar() {
 							<NavButton>About Us</NavButton>
 						</Link>
 					</ButtonWrap>
-					{!authUser.name && (
+					{(!authUser || !authUser.name) && (
 						<AccountButtonWrap>
 							<Link to={`/myFirstSocialNetwork/registration`}>
 								<NavButton variant='outlined' sx={{ marginRight: '10px' }}>
@@ -55,7 +55,7 @@ function Navbar() {
 							</Link>
 						</AccountButtonWrap>
 					)}
-					{authUser.name && (
+					{(!authUser || !authUser.name) && (
 						<AccountButtonWrap>
 							<Link to={`/myFirstSocialNetwork/users/user/${authUser.id}`}>
 								<NavButton variant='outlined' sx={{ marginRight: '10px' }}>
