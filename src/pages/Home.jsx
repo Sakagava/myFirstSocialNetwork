@@ -25,7 +25,7 @@ export default function Home() {
 					<MainButton
 						sx={{
 							height: { xs: '300px', sm: '350px', md: '750px' },
-							fontSize: { sm: '37px', md: '45px' },
+							fontSize: { xs: '30px', sm: '40px', md: '45px' },
 						}}
 						component={Link}
 						to={'/myFirstSocialNetwork/posts'}
@@ -38,7 +38,7 @@ export default function Home() {
 					<MainButton
 						sx={{
 							height: { xs: '300px', sm: '600px', md: '750px' },
-							fontSize: { sm: '37px', md: '45px' },
+							fontSize: { xs: '30px', sm: '40px', md: '45px' },
 						}}
 						component={Link}
 						to={pathCreatePost}
