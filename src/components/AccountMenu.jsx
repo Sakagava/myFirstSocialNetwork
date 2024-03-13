@@ -23,6 +23,7 @@ export default function AccountMenu({ authUser, handleLogOut }) {
 	const handleClose = () => {
 		setAnchorEl(null)
 	}
+
 	return (
 		<>
 			<Box
@@ -71,7 +72,7 @@ export default function AccountMenu({ authUser, handleLogOut }) {
 								fontSize: { xs: '13px', sm: '20px' },
 							}}
 						>
-							{authUser.username ? authUser.username[0] : 'M'}
+							{Boolean(authUser.name) ? authUser.username[0] : 'M'}
 						</Avatar>
 					</IconButton>
 				</Tooltip>
@@ -111,7 +112,7 @@ export default function AccountMenu({ authUser, handleLogOut }) {
 				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
-				{authUser.username ? (
+				{Boolean(authUser.name) ? (
 					<MenuItem
 						component={Link}
 						to={`/myFirstSocialNetwork/users/user/${authUser.id}`}
@@ -125,7 +126,7 @@ export default function AccountMenu({ authUser, handleLogOut }) {
 				)}
 
 				<Divider />
-				{authUser.username ? (
+				{Boolean(authUser.username) ? (
 					<MenuItem onClick={handleLogOut}>
 						<Logout fontSize='small' />
 						Logout

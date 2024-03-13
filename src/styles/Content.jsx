@@ -11,14 +11,15 @@ export const NoMorePosts = styled(Typography)(() => ({
 
 export const postModal = {
 	position: 'absolute',
-	top: '50%',
+	top: '52%',
 	left: '50%',
+	width: { xs: '100vw', sm: 600, md: 800 },
 	transform: 'translate(-50%, -50%)',
-	width: '50%',
-	height: '90vh',
+	height: { xs: '93vh' },
 	bgcolor: 'background.paper',
 	border: '2px solid #000',
 	boxShadow: 24,
+
 	p: 4,
 	overflowY: 'auto',
 }
