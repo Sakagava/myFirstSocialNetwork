@@ -7,7 +7,7 @@ import { useAppSelector } from '../store/rtkHooks'
 
 export default function Home() {
 	const authUser = useAppSelector(state => state.users.authUser)
-	const pathCreatePost = authUser.name ? '/posts' : '/registration'
+	const pathCreatePost = authUser.name ? '/posts' : '/login'
 
 	return (
 		<Box className='home' padding={2}>

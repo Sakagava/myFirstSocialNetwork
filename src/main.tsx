@@ -11,7 +11,7 @@ import './App.css'
 import PageAllAccounts from './pages/PageAllAccounts.js'
 import AboutUs from './pages/AboutUs.js'
 import PageAccount from './pages/PageAccount.js'
-import { Registration } from './pages/Registration.js'
+import { Registration } from './pages/SignUp.js'
 import { PersistGate } from 'redux-persist/integration/react'
 import { LoginPage } from './pages/LoginPage.js'
 

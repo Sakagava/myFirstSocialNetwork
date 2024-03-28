@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { TUser } from '../types/TUsers'
+import { TUserSignUp, TUser } from '../types/TUsers'
 import { emptyUser } from '../utils/userObj'
+import { TEditUserSchema } from '../utils/editUserProfile'
 
 export const fetchUsers = createAsyncThunk<TUser[]>('fetchUsers', async () => {
 	const response = await fetch('https://jsonplaceholder.typicode.com/users')
 	return await response.json()
 })
 
-export const userRegister = createAsyncThunk<TUser, TUser>(
-	'userRegister',
+export const signUp = createAsyncThunk<TUser, TUserSignUp>(
+	'signUp',
 	async user => {
 		const response = await fetch('https://jsonplaceholder.typicode.com/users', {
 			method: 'POST',
@@ -108,10 +109,10 @@ const users = createSlice({
 				state.users = action.payload
 				state.loading = false
 			})
-			.addCase(userRegister.pending, state => {
+			.addCase(signUp.pending, state => {
 				state.loading = true
 			})
-			.addCase(userRegister.fulfilled, (state, action) => {
+			.addCase(signUp.fulfilled, (state, action) => {
 				const nextId = state.users.length + 1
 				const nextUser = { ...action.payload, id: nextId }
 				state.authUser = nextUser

@@ -14,11 +14,3 @@ export const InnerWrap = styled(Box)(() => ({
 		alignItems: 'start',
 	},
 }))
-
-export const Substrate = styled(Box)(() => ({
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignItems: 'center',
-	gap: '10px',
-}))

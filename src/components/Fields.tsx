@@ -6,10 +6,13 @@ import InputAdornment from '@mui/material/InputAdornment'
 import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { UseFormRegister, FieldErrors } from 'react-hook-form'
+import { TSignUpSchema } from '../utils/signUpSchema'
 
 type FieldsProps = {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-	error?: boolean
+	errors?: FieldErrors<TSignUpSchema>
+	register: UseFormRegister<TSignUpSchema>
 }
 
 type PasswordsFieldsProps = {
@@ -21,16 +24,22 @@ type PasswordsFieldsProps = {
 	error?: boolean
 }
 
-export const NameField: React.FC<FieldsProps> = ({ onChange, error }) => {
+export const NameField: React.FC<FieldsProps> = ({
+	onChange,
+	register,
+	errors,
+}) => {
 	return (
-		<TextField
-			required
-			id='outlined-name'
-			label='Name'
-			name='name'
-			onChange={onChange}
-			error={error}
-		/>
+		<>
+			<TextField
+				{...register('email')}
+				id='outlined-name'
+				label='Name'
+				name='name'
+				onChange={onChange}
+				error={errors}
+			/>
+		</>
 	)
 }
 

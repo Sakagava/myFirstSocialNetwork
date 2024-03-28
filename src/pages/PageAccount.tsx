@@ -88,7 +88,7 @@ export default function PageAccount() {
 			...prevState,
 			address: {
 				...prevState.address,
-				geo: { ...prevState.address.geo },
+				geo: { ...prevState.address?.geo },
 				[name]: value,
 			},
 		}))
@@ -103,7 +103,7 @@ export default function PageAccount() {
 			address: {
 				...prevState.address,
 				geo: {
-					...prevState.address.geo,
+					...prevState.address?.geo,
 					[name]: value,
 				},
 			},
@@ -306,27 +306,27 @@ export default function PageAccount() {
 										<>
 											<Typography variant='h5'>Street:</Typography>
 											<Typography>
-												{(user && user.address.street) || 'None'}
+												{(user && user.address?.street) || 'None'}
 											</Typography>
 											<Typography variant='h5'>Suite:</Typography>
 											<Typography>
-												{(user && user.address.suite) || 'None'}
+												{(user && user.address?.suite) || 'None'}
 											</Typography>
 											<Typography variant='h5'>City:</Typography>
 											<Typography>
-												{(user && user.address.city) || 'None'}
+												{(user && user.address?.city) || 'None'}
 											</Typography>
 											<Typography variant='h5'>Zipcode:</Typography>
 											<Typography>
-												{(user && user.address.zipcode) || 'None'}
+												{(user && user.address?.zipcode) || 'None'}
 											</Typography>
 											<Typography variant='h5'>Lat:</Typography>
 											<Typography>
-												{(user && user.address.geo.lat) || 'None'}
+												{(user && user.address?.geo.lat) || 'None'}
 											</Typography>
 											<Typography variant='h5'>Lng:</Typography>
 											<Typography>
-												{(user && user.address.geo.lng) || 'None'}
+												{(user && user.address?.geo.lng) || 'None'}
 											</Typography>
 										</>
 									)}
@@ -391,15 +391,15 @@ export default function PageAccount() {
 										<>
 											<Typography variant='h5'>Name:</Typography>
 											<Typography>
-												{(user && user.company.name) || 'None'}
+												{(user && user.company?.name) || 'None'}
 											</Typography>
 											<Typography variant='h5'>CatchPhrase:</Typography>
 											<Typography>
-												{(user && user.company.catchPhrase) || 'None'}
+												{(user && user.company?.catchPhrase) || 'None'}
 											</Typography>
 											<Typography variant='h5'>Bs:</Typography>
 											<Typography>
-												{(user && user.company.bs) || 'None'}
+												{(user && user.company?.bs) || 'None'}
 											</Typography>
 										</>
 									)}

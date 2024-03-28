@@ -33,23 +33,20 @@ export const AddComment: React.FC<{ post: TPost }> = ({ post }) => {
 
 		if (authUser.name) {
 			const fieldIsEmpty = newComment.name !== '' && newComment.body !== ''
-			if (fieldIsEmpty) {
-				if (post.comments) {
-					dispatch(addNewComment([...post.comments, newComment]))
-				} else {
-					dispatch(addNewComment([newComment]))
-				}
-				setNewComment({
-					postId: post.id,
-					id: amountOfComments + 1,
-					email: authUser.email,
-					name: '',
-					body: '',
-					likes: [],
-				})
+			!fieldIsEmpty && navigate('/login')
+			setNewComment({
+				postId: post.id,
+				id: amountOfComments + 1,
+				email: authUser.email,
+				name: '',
+				body: '',
+				likes: [],
+			})
+			if (!post.comments) {
+				dispatch(addNewComment([newComment]))
+				return
 			}
-		} else {
-			navigate('/login')
+			dispatch(addNewComment([...post.comments, newComment]))
 		}
 	}
 
