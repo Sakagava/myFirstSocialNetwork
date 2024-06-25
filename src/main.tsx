@@ -15,6 +15,8 @@ import { Registration } from './pages/SignUp.js'
 import { PersistGate } from 'redux-persist/integration/react'
 import { LoginPage } from './pages/LoginPage.js'
 
+//Какой-то текст, который должен остаться
+
 const router = createBrowserRouter([
 	{
 		path: '/',
